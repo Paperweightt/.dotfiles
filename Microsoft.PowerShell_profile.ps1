@@ -1,8 +1,16 @@
 ## path variables
-$MOJANG = Join-Path $env:USERPROFILE "AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang"
-$PACKS = Join-Path $env:USERPROFILE "\OneDrive\Desktop\packs"
-$CODE = "C:\Code"
-$DOTF = Join-Path $HOME "\.dotfiles"
+$mojang = Join-Path $env:USERPROFILE "AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang"
+$packs = Join-Path $env:USERPROFILE "\OneDrive\Desktop\packs"
+$code = "C:\Code"
+$dotf = Join-Path $HOME "\.dotfiles"
+$startupDir = [Environment]::GetFolderPath("Startup")
 
-## neovim path
-$env:XDG_CONFIG_HOME = "$HOME\.dotfiles"
+## config paths
+
+$env:XDG_CONFIG_HOME = "$HOME\.dotfiles" # neovim 
+setx GLAZEWM_CONFIG_PATH "$HOME\.dotfiles\glazeWm.yaml" # glazewm
+
+## not in use
+## komorebi
+# $env:KOMOREBI_CONFIG_HOME = "$HOME\.dotfiles\komorebi"
+# $env:WHKD_CONFIG_HOME = "$HOME\.dotfiles\komorebi"
