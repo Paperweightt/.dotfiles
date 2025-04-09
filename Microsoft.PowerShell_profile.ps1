@@ -7,9 +7,8 @@ $startupDir = [Environment]::GetFolderPath("Startup")
 
 ## config paths
 
-$env:XDG_CONFIG_HOME = "$HOME\.dotfiles" # neovim 
-setx GLAZEWM_CONFIG_PATH "$HOME\.dotfiles\glazeWm.yaml" # glazewm
-
+$env:XDG_CONFIG_HOME = "$HOME\.dotfiles" > $null # neovim 
+setx GLAZEWM_CONFIG_PATH "$HOME\.dotfiles\glazeWm.yaml" > $null 2>&1 # glazewm
 ## not in use
 ## komorebi
 # $env:KOMOREBI_CONFIG_HOME = "$HOME\.dotfiles\komorebi"

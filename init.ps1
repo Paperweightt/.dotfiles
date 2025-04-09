@@ -31,7 +31,7 @@ if ($profileContent -notmatch [regex]::Escape($dotfilesProfilePath)) {
 
 
 # ahk -------------------------------------------------------------------------------------------
-$ahkDir = "$HOME\ahk"  # Replace with your AHK scripts folder path
+$ahkDir = "$HOME\.dotfiles\ahk"  # Replace with your AHK scripts folder path
 $startupDir = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
 
 if (-not (Test-Path $ahkDir)) {
