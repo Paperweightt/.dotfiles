@@ -7,9 +7,19 @@ $startupDir = [Environment]::GetFolderPath("Startup")
 
 ## config paths
 
-$env:XDG_CONFIG_HOME = "$HOME\.dotfiles" > $null # neovim 
-setx GLAZEWM_CONFIG_PATH "$HOME\.dotfiles\glazeWm.yaml" > $null 2>&1 # glazewm
+$env:XDG_CONFIG_HOME = "$env:USERPROFILE\.dotfiles" # neovim 
+setx GLAZEWM_CONFIG_PATH "$env:USERPROFILE\.dotfiles\glazeWm.yaml" > $null 2>&1 # glazewm
 ## not in use
 ## komorebi
 # $env:KOMOREBI_CONFIG_HOME = "$HOME\.dotfiles\komorebi"
 # $env:WHKD_CONFIG_HOME = "$HOME\.dotfiles\komorebi"
+
+
+function Admin {
+    if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+        Start-Process -FilePath "pwsh" -ArgumentList "-NoProfile", "-NoExit" `
+            -Verb RunAs
+        exit
+    }
+}
+
