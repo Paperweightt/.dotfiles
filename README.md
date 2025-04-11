@@ -13,9 +13,11 @@
 
 
  - glazeWM
+ >```
  > winget install GlazeWM
 
  - flow launcher
+ >```
  > winget install "Flow Launcher"
 
 # todo list
