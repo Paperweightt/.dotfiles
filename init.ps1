@@ -53,5 +53,5 @@ Get-ChildItem -Path $ahkDir -Filter *.ahk | ForEach-Object {
     Write-Host "Created shortcut for '$($_.Name)' in Startup folder."
 }
 
-Write-Host "`nAll done ✅"
+Write-Host "`nAll done"
 
