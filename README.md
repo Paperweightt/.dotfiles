@@ -21,7 +21,7 @@
  > winget install "Flow Launcher"
 
 # todo list
- - Missing Configs 
-   - flow launcher
- - Unlisted
-   - yebar
+ > - Missing Configs 
+ >   - flow launcher
+ > - Unlisted
+ >   - yebar

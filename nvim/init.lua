@@ -594,9 +594,9 @@ require('lazy').setup({
           'bash',
           'c',
           'html',
-          'css'
+          'css',
           'lua',
-          'powershell'
+          'powershell',
           'markdown_inline',
           'markdown',
           'vim',
