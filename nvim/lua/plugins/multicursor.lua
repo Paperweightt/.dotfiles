@@ -17,24 +17,24 @@ return {
     end)
     set({ 'n', 'x' }, '<leader><up>', function()
       mc.lineSkipCursor(-1)
-    end)
+    end, { desc = 'Move Up' })
     set({ 'n', 'x' }, '<leader><down>', function()
       mc.lineSkipCursor(1)
-    end)
+    end, { desc = 'Move Down' })
 
     -- Add or skip adding a new cursor by matching word/selection
     set({ 'n', 'x' }, '<leader>n', function()
       mc.matchAddCursor(1)
-    end)
+    end, { desc = '[N]ew Cursor By Match' })
     set({ 'n', 'x' }, '<leader>s', function()
       mc.matchSkipCursor(1)
-    end)
+    end, { desc = '[S]kip New Cursor By Match' })
     set({ 'n', 'x' }, '<leader>N', function()
       mc.matchAddCursor(-1)
-    end)
+    end, { desc = '[N]ew Cursor By Match Up' })
     set({ 'n', 'x' }, '<leader>S', function()
       mc.matchSkipCursor(-1)
-    end)
+    end, { desc = '[S]kip New Cursor By Match Up' })
 
     -- In normal/visual mode, press `mwap` will create a cursor in every match of
     -- the word captured by `iw` (or visually selected range) inside the bigger
@@ -50,7 +50,7 @@ return {
     set('n', 'mW', mc.operator)
 
     -- Add all matches in the document
-    set({ 'n', 'x' }, '<leader>A', mc.matchAllAddCursors)
+    set({ 'n', 'x' }, '<leader>A', mc.matchAllAddCursors, { desc = '[A]dd Cursor To All Matches' })
 
     -- You can also add cursors with any motion you prefer:
     -- set("n", "<right>", function()
@@ -65,7 +65,7 @@ return {
     set({ 'n', 'x' }, '<right>', mc.prevCursor)
 
     -- Delete the main cursor.
-    set({ 'n', 'x' }, '<leader>x', mc.deleteCursor)
+    set({ 'n', 'x' }, '<leader>d', mc.deleteCursor, { desc = '[D]elete Cursor' })
 
     -- Add and remove cursors with control + left click.
     set('n', '<c-leftmouse>', mc.handleMouse)
@@ -89,10 +89,10 @@ return {
     end)
 
     -- bring back cursors if you accidentally clear them
-    set('n', '<leader>gv', mc.restoreCursors)
+    set('n', '<leader>r', mc.restoreCursors, { desc = '[R]estore Cursors' })
 
     -- Align cursor columns.
-    set('n', '<leader>a', mc.alignCursors)
+    set('n', '<leader>a', mc.alignCursors, { desc = '[A]lign Cursors' })
 
     -- Split visual selections by regex.
     -- set('x', 'S', mc.splitCursors) leap is using this
@@ -104,13 +104,13 @@ return {
     -- match new cursors within visual selections by regex.
     set('x', 'M', mc.matchCursors)
 
-    -- Rotate visual selection contents.
-    set('x', '<leader>t', function()
-      mc.transposeCursors(1)
-    end)
-    set('x', '<leader>T', function()
-      mc.transposeCursors(-1)
-    end)
+    -- -- Rotate visual selection contents.
+    -- set('x', '<leader>t', function()
+    --   mc.transposeCursors(1)
+    -- end)
+    -- set('x', '<leader>T', function()
+    --   mc.transposeCursors(-1)
+    -- end)
 
     -- Jumplist support
     set({ 'x', 'n' }, '<c-i>', mc.jumpForward)

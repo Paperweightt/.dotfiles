@@ -9,7 +9,7 @@ return {
   vim.keymap.set('n', '<leader>f', function()
     MiniFiles.open(vim.api.nvim_buf_get_name(0))
     -- CdToBufferDirectory()
-  end, { desc = 'Open mini-files' }),
+  end, { desc = '[F]ile Explorer' }),
 
   config = function()
     require('mini.files').setup()
