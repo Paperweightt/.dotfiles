@@ -41,7 +41,7 @@ return {
       -- When a file is deleted, for example via an external program, delete the
       -- associated buffer as well. Requires Neovim >= 0.10.
       -- (This feature is independent from the automatic closing)
-      deleteBufferWhenFileDeleted = false,
+      deleteBufferWhenFileDeleted = true,
 
       -- Function to delete the buffer. The argument provided to the function is
       -- the buffer number. If nothing is provided the plugin will just call

@@ -1,11 +1,3 @@
--- vim.o.sessionptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoions'
-vim.o.scrolloff = 12
-vim.o.cursorline = true
-vim.o.wrap = true
-vim.o.relativenumber = true
-
-vim.o.swapfile = false
-
 -- fold
 vim.opt.foldenable = false
 vim.opt.foldmethod = 'manual'
@@ -17,8 +9,14 @@ vim.opt.tabstop = 4 -- Number of spaces per tab
 vim.opt.softtabstop = 4 -- Makes backspace delete like a tab
 
 -- visuals
-vim.o.laststatus = 0
-vim.o.fillchars = 'eob: '
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.swapfile = false
+vim.opt.scrolloff = 12
+vim.opt.cursorline = true
+vim.opt.relativenumber = true
+vim.opt.laststatus = 0
+vim.opt.fillchars = 'eob: '
 
 -- terminal
 vim.o.shell = 'powershell'
