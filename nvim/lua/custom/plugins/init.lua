@@ -33,24 +33,15 @@ function CdToBufferDirectory()
   vim.cmd('cd ' .. current_buffer_path)
 end
 
--- vim.cmd 'autocmd VimEnter* normal! ahi'
-
 -- remaps
 --  esc to clear highlights
-vim.api.nvim_set_keymap('n', '<Esc>', ':nohlsearch<Bar>echo<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<Esc>', ':nohlsearch<Bar>echo<CR>', { noremap = true, silent = true })
 
 -- Ctrl+S to save the file
 vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-s>', function()
   vim.cmd 'w'
 end, { noremap = true, silent = true })
-
--- Map a keybind to execute CdToBufferDirectory command
-vim.keymap.set('n', '<leader>cd', CdToBufferDirectory, {
-  noremap = true,
-  silent = true,
-  desc = '[C]d to current [D]irectory',
-})
 
 vim.keymap.set('v', '<leader>r', function()
   -- Get the selected text

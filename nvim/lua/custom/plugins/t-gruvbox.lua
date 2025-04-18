@@ -32,9 +32,9 @@ return {
         -- bg = '#1A1A1A',
       },
       overrides = {
-        Normal = { bg = '#1A1A1A' },
-        SignColumn = { bg = '#1A1A1A' },
-        Folded = { bg = '#1A1A1A' },
+        Normal = { bg = '#1b1b1b' },
+        SignColumn = { bg = '#1b1b1b' },
+        Folded = { bg = '#1b1b1b' },
       },
       dim_inactive = false,
       transparent_mode = transparent,
