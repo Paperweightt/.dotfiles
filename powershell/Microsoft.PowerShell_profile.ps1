@@ -3,19 +3,7 @@ $mojang = Join-Path $env:USERPROFILE "AppData\Local\Packages\Microsoft.Minecraft
 $packs = Join-Path $env:USERPROFILE "\OneDrive\Desktop\packs"
 $code = "C:\Code"
 $dotf = Join-Path $HOME "\.dotfiles"
-# $startupDir = [Environment]::GetFolderPath("Startup")
-
-## config paths
-
-$env:XDG_CONFIG_HOME = "$env:USERPROFILE\.dotfiles" # neovim 
-$env:WEZTERM_CONFIG_FILE = "$env:USERPROFILE\.dotfiles\wezterm.lua"
-
-setx GLAZEWM_CONFIG_PATH "$env:USERPROFILE\.dotfiles\glazeWm.yaml" > $null 2>&1 # glazewm
-## not in use
-## komorebi
-# $env:KOMOREBI_CONFIG_HOME = "$HOME\.dotfiles\komorebi"
-# $env:WHKD_CONFIG_HOME = "$HOME\.dotfiles\komorebi"
-
+$startup = [Environment]::GetFolderPath("Startup")
 
 function Admin
 {
@@ -26,4 +14,3 @@ function Admin
         exit
     }
 }
-

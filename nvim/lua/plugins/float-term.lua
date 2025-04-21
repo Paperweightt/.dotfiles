@@ -67,19 +67,20 @@ local new_terminal = function()
 end
 
 local toggle_terminal_here = function()
-  local current_path = vim.fn.expand '%:p:h'
+  local current_term_path = vim.fn.expand '%:p:h'
   local prev_term_path = state.floating.dir
   local prev_path = vim.fn.getcwd()
 
-  -- print(current_path)
-  print(prev_term_path)
+  print(current_term_path)
 
-  if prev_term_path and current_path == prev_term_path then
+  if prev_term_path and current_term_path == prev_term_path then
+    print 'old term'
     toggle_terminal()
   else
-    vim.cmd('cd ' .. current_path)
+    print 'new term'
+    vim.cmd('cd ' .. current_term_path)
     new_terminal()
-    vim.cmd('cd' .. prev_path)
+    vim.cmd('cd ' .. prev_path)
   end
 end
 
@@ -89,7 +90,7 @@ local toggle_new_terminal_here = function()
 
   vim.cmd('cd ' .. current_path)
   new_terminal()
-  vim.cmd('cd' .. prev_path)
+  vim.cmd('cd ' .. prev_path)
 end
 
 vim.keymap.set('n', '<leader>to', toggle_terminal, { desc = '[T]erminal [O]pen' })
