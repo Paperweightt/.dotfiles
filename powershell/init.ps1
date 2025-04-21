@@ -1,5 +1,5 @@
 $profilePath = $PROFILE
-$dotfilesProfilePath = "$HOME\.dotfiles\Microsoft.PowerShell_profile.ps1"
+$dotfilesProfilePath = "$HOME\.dotfiles\powershell\Microsoft.PowerShell_profile.ps1"
 
 # Ensure the profile directory exists
 $profileDir = Split-Path $profilePath

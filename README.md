@@ -14,7 +14,7 @@
 ## Setup-1 Clone Repo and Initialize
 >```
 > cd $home
-> git clone repo blah blah
+> gh repo clone Paperweightt/dotfiles
 > .\.dotfiles\init.ps1
 >```
 
@@ -49,16 +49,16 @@
 
 ## Alternatives
 ```
-- Neovim - code editor
+- Neovim - Code editor
     - Visual Studio Code
     - Zed
     - Emacs
     - Helix
-- GlazeWm - windows tiling manager
+- GlazeWm - Windows tiling manager
     - Komorebi (configured)
-- Yasb (top bar)
-    - zebar
-- Flow Launcher - quick launcher
+- Yasb - Top bar
+    - Zebar
+- Flow Launcher - Quick launcher
     - PowerToys Run
 ```
 
@@ -66,20 +66,20 @@
 ```
 - Missing Info 
     - Download
-        - powertoys
+        - Powertoys
         - Wezterm
     - Configs
-        - wezterm
-        - yasb
-        - flow launcher
-        - obsidian
-        - vencord
-        - spicetify
+        - Wezterm
+        - Yasb
+        - Flow Launcher
+        - Obsidian
+        - Vencord
+        - Spicetify
 - Configure
-    - wezterm
-    - flow launcher
-        - theme
-        - better plugins
+    - Wezterm
+    - Flow launcher
+        - Theme
+        - Better plugins
 - Wants
-    - dedicated markdown displayer
+    - Dedicated markdown displayer
 ```
