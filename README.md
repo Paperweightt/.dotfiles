@@ -2,13 +2,18 @@
 
 ## Installation
 >```
->  winget install --id Git.Git -e --source winget
->  winget install --id GitHub.cli
->  winget install Neovim.Neovim
->  winget install GlazeWM
->  winget install "Flow Launcher"
->  scoop bucket install extras
->  scoop install neovide
+> winget install --id Git.Git -e --source winget
+> winget install --id GitHub.cli
+> winget install Neovim.Neovim
+> winget install GlazeWM
+> winget install "Flow Launcher"
+> winget install Node.JS
+> 
+> npm install --save-dev --save-exact prettier
+>  
+> scoop bucket add extras
+> scoop install neovide
+> scoop install extras/yasb
 >```
 
 ## Setup-1 Clone Repo and Initialize
@@ -20,7 +25,8 @@
 
 ## Setup-2 Manual Setup
 >```
-> flowlauncher
+> Flowlauncher
+> Tridactyl
 >```
 
 ## Keybinds
@@ -30,12 +36,12 @@
     - Alt+Shift+HJKL | Move focused window
     - Alt+123        | Move focus to screen 1 2 3
     - Alt+Shift+123  | Move window to screen 1 2 3
+    - Alt+Shift+HJKL | Resize window
     - Alt+F          | Toggle window to float
     - Alt+T          | Toggle window to tiling
     - Alt+M          | Toggle window to maximize
     - Alt+N          | Toggle window to minimize
     - Alt+A          | Toggle tiling direction
-    - Alt+UIOP       | Resize window
     - Alt+Q          | Close window
     - Alt+R          | Reload glazeWm config
 - Powertoys
@@ -60,6 +66,9 @@
     - Zebar
 - Flow Launcher - Quick launcher
     - PowerToys Run
+- Tridactyl - Browser vim keybinds
+    - Vimium
+    - Vimium C
 ```
 
 ## My Todo List
@@ -70,7 +79,6 @@
         - Wezterm
     - Configs
         - Wezterm
-        - Yasb
         - Flow Launcher
         - Obsidian
         - Vencord
