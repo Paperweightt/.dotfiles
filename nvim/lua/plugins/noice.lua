@@ -1,3 +1,7 @@
+vim.keymap.set('n', 'q', function()
+  require('notify').dismiss { silent = true, pending = true }
+end, { desc = 'Dismiss latest notification' })
+
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
@@ -10,7 +14,6 @@ return {
   },
   config = function()
     require('notify').setup {
-      background_colour = '#000000',
       render = 'minimal',
     }
     require('noice').setup {

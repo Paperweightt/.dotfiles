@@ -3,10 +3,20 @@ return {
   config = function()
     local devicons = require 'nvim-web-devicons'
     require('incline').setup {
+      window = {
+        margin = {
+          horizontal = 0,
+        },
+      },
       render = function(props)
-        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
-        if filename == '' then
+        local path = vim.api.nvim_buf_get_name(props.buf)
+        local filename
+
+        if path == '' then
           filename = '[No Name]'
+        else
+          local parts = vim.split(path, '/')
+          filename = table.concat({ parts[#parts - 1], parts[#parts] }, '/')
         end
         local ft_icon, ft_color = devicons.get_icon_color(filename)
 
