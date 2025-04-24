@@ -9,14 +9,9 @@ return {
         },
       },
       render = function(props)
-        local path = vim.api.nvim_buf_get_name(props.buf)
-        local filename
-
-        if path == '' then
+        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
+        if filename == '' then
           filename = '[No Name]'
-        else
-          local parts = vim.split(path, '/')
-          filename = table.concat({ parts[#parts - 1], parts[#parts] }, '/')
         end
         local ft_icon, ft_color = devicons.get_icon_color(filename)
 
