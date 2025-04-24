@@ -29,7 +29,7 @@
 > Tridactyl
 >```
 
-## Chrome OS - Neovim Only
+## Linux - Neovim Only
 >```
 > cd $XDG_CONFIG_HOME/
 >
