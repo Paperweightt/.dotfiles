@@ -29,6 +29,24 @@
 > Tridactyl
 >```
 
+## Linux - Neovim Only
+>```
+> cd $XDG_CONFIG_HOME/
+>
+> rm nvim -f -r
+>
+> git clone --filter=blob:none --no-checkout https://github.com/Paperweightt/dotfiles
+> cd dotfiles
+> git sparse-checkout init --cone
+> git sparse-checkout set examples/blog
+> git checkout
+>
+> mv nvim ../
+> cd ../
+> rm ./dotfiles -f -r
+>```
+
+
 ## Keybinds
 ```
 - GlazeWm
