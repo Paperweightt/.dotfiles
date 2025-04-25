@@ -4,7 +4,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.015
   vim.g.neovide_refresh_rate = 144
   vim.g.neovide_scale_factor = 1
-  vim.o.guifont = 'FiraCode Nerd Font Mono:h10.5'
+  vim.o.guifont = 'FiraCode Nerd Font Mono:h11'
   -- vim.o.guifont = 'FiraCode Nerd Font Mono:h15.5'
 
   local function sync_separator_with_background()

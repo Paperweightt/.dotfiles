@@ -1,49 +1,49 @@
 ## Dotfiles - Windows 11
 
 ## Installation
->```
-> winget install --id Git.Git -e --source winget
-> winget install --id GitHub.cli
-> winget install Neovim.Neovim
-> winget install GlazeWM
-> winget install "Flow Launcher"
-> winget install Node.JS
-> 
-> npm install --save-dev --save-exact prettier
->  
-> scoop bucket add extras
-> scoop install neovide
-> scoop install extras/yasb
+>``` powershell
+>winget install --id Git.Git -e --source winget
+>winget install --id GitHub.cli
+>winget install Neovim.Neovim
+>winget install GlazeWM
+>winget install "Flow Launcher"
+>winget install Node.JS
+>
+>npm install --save-dev --save-exact prettier
+>
+>scoop bucket add extras
+>scoop install neovide
+>scoop install extras/yasb
 >```
 
 ## Setup-1 Clone Repo and Initialize
->```
-> cd $home
-> gh repo clone Paperweightt/dotfiles
-> .\.dotfiles\init.ps1
+>``` powershell
+>cd $home
+>gh repo clone Paperweightt/dotfiles
+>.\.dotfiles\init.ps1
 >```
 
 ## Setup-2 Manual Setup
 >```
-> Flowlauncher
-> Tridactyl
+>Flowlauncher
+>Tridactyl
 >```
 
-## Linux - Neovim Only
->```
-> cd $XDG_CONFIG_HOME/
+# Linux - Neovim Only
+>``` bash
+>cd $XDG_CONFIG_HOME/
 >
-> rm nvim -f -r
+>rm nvim -f -r
 >
-> git clone --filter=blob:none --no-checkout https://github.com/Paperweightt/dotfiles
-> cd dotfiles
-> git sparse-checkout init --cone
-> git sparse-checkout set examples/blog
-> git checkout
+>git clone --filter=blob:none --no-checkout https://github.com/Paperweightt/dotfiles
+>cd dotfiles
+>git sparse-checkout init --cone
+>git sparse-checkout set examples/blog
+>git checkout
 >
-> mv nvim ../
-> cd ../
-> rm ./dotfiles -f -r
+>mv nvim ../
+>cd ../
+>rm ./dotfiles -f -r
 >```
 
 

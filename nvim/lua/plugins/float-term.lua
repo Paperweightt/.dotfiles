@@ -1,3 +1,10 @@
+vim.o.shell = 'powershell'
+vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command'
+vim.o.shellquote = '"'
+vim.o.shellxquote = ''
+vim.o.shellpipe = '| Out-File -Encoding UTF8 -Append'
+vim.o.shellredir = '| Out-File -Encoding UTF8'
+
 local state = {
   floating = {
     buf = -1,

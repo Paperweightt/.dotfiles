@@ -15,16 +15,9 @@ vim.opt.swapfile = false
 vim.opt.scrolloff = 12
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
+vim.opt.number = true
 vim.opt.laststatus = 0
 vim.opt.fillchars = 'eob: '
-
--- terminal
-vim.o.shell = 'powershell'
-vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command'
-vim.o.shellquote = '"'
-vim.o.shellxquote = ''
-vim.o.shellpipe = '| Out-File -Encoding UTF8 -Append'
-vim.o.shellredir = '| Out-File -Encoding UTF8'
 
 function CdToBufferDirectory()
   local current_buffer_path = vim.fn.expand '%:p:h'

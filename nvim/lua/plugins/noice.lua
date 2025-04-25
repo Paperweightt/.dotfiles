@@ -14,6 +14,7 @@ return {
   },
   config = function()
     require('notify').setup {
+      background = '#000000',
       render = 'minimal',
     }
     require('noice').setup {
