@@ -19,14 +19,17 @@ vim.opt.number = true
 vim.opt.laststatus = 0
 vim.opt.fillchars = 'eob: '
 
+vim.api.nvim_create_autocmd('VimResized', {
+  desc = 'resize splits',
+  callback = function()
+    vim.cmd 'wincmd ='
+  end,
+})
+
 function CdToBufferDirectory()
   local current_buffer_path = vim.fn.expand '%:p:h'
   vim.cmd('cd ' .. current_buffer_path)
 end
-
--- remaps
---  esc to clear highlights
--- vim.api.nvim_set_keymap('n', '<Esc>', ':nohlsearch<Bar>echo<CR>', { noremap = true, silent = true })
 
 -- Ctrl+S to save the file
 vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })

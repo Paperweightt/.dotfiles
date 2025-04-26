@@ -9,9 +9,49 @@ local state = {
   floating = {
     buf = -1,
     win = -1,
-    dir = nil,
+  },
+  prev_buf = {
+    path = nil,
   },
 }
+
+vim.api.nvim_create_autocmd('VimResized', {
+  desc = 'resize float terminal',
+  callback = function()
+    if state.floating.buf == vim.api.nvim_get_current_buf() then
+      local width = math.floor(vim.o.columns * 0.8)
+      local height = math.floor(vim.o.lines * 0.8)
+      local col = math.floor((vim.o.columns - width) / 2)
+      local row = math.floor((vim.o.lines - height) / 2)
+
+      vim.api.nvim_win_set_config(state.floating.win, {
+        relative = 'editor', -- or "win", "cursor" etc, depending what you want
+        row = row, -- new vertical position
+        col = col, -- new horizontal position
+        width = width,
+        height = height,
+        style = 'minimal', -- No borders or extra UI elements
+        border = 'rounded',
+      })
+    end
+  end,
+})
+
+vim.keymap.set('t', '<C-h>', function()
+  local term_buf = state.floating.buf
+  local chan_id = vim.b[term_buf].terminal_job_id
+
+  vim.fn.chansend(chan_id, { 'cd ' .. state.prev_buf.path .. '\r\n' })
+end, { noremap = true, silent = true })
+
+vim.keymap.set('t', '<C-n>', function()
+  local buf = vim.api.nvim_create_buf(false, true) -- No file, scratch buffer
+
+  vim.api.nvim_win_set_buf(state.floating.win, buf)
+  state.floating.buf = buf
+
+  vim.cmd.terminal()
+end, { noremap = true, silent = true })
 
 local function create_floating_window(opts)
   opts = opts or {}
@@ -22,10 +62,8 @@ local function create_floating_window(opts)
 
   -- Create a buffer
   local buf = nil
-  local dir = nil
   if vim.api.nvim_buf_is_valid(opts.buf) then
     buf = opts.buf
-    dir = vim.fn.expand '%:p:h'
   else
     buf = vim.api.nvim_create_buf(false, true) -- No file, scratch buffer
   end
@@ -44,20 +82,11 @@ local function create_floating_window(opts)
   -- Create the floating window
   local win = vim.api.nvim_open_win(buf, true, win_config)
 
-  return { buf = buf, win = win, dir = dir }
+  return { buf = buf, win = win }
 end
 
-local resetState = function()
-  state = {
-    floating = {
-      buf = -1,
-      win = -1,
-      dir = nil,
-    },
-  }
-end
-
-local toggle_terminal = function()
+local function toggle_terminal()
+  state.prev_buf.path = vim.fn.expand '%:p:h'
   if not vim.api.nvim_win_is_valid(state.floating.win) then
     state.floating = create_floating_window { buf = state.floating.buf }
     if vim.bo[state.floating.buf].buftype ~= 'terminal' then
@@ -68,48 +97,13 @@ local toggle_terminal = function()
   end
 end
 
-local new_terminal = function()
-  resetState()
-  toggle_terminal()
-end
-
-local toggle_terminal_here = function()
-  local current_term_path = vim.fn.expand '%:p:h'
-  local prev_term_path = state.floating.dir
-  local prev_path = vim.fn.getcwd()
-
-  print(current_term_path)
-
-  if prev_term_path and current_term_path == prev_term_path then
-    print 'old term'
-    toggle_terminal()
-  else
-    print 'new term'
-    vim.cmd('cd ' .. current_term_path)
-    new_terminal()
-    vim.cmd('cd ' .. prev_path)
-  end
-end
-
-local toggle_new_terminal_here = function()
-  local current_path = vim.fn.expand '%:p:h'
-  local prev_path = vim.fn.getcwd()
-
-  vim.cmd('cd ' .. current_path)
-  new_terminal()
-  vim.cmd('cd ' .. prev_path)
-end
-
-vim.keymap.set('n', '<leader>to', toggle_terminal, { desc = '[T]erminal [O]pen' })
-vim.keymap.set('n', '<leader>tO', new_terminal, { desc = '[T]erminal [O]pen New' })
-vim.keymap.set('n', '<leader>th', toggle_terminal_here, { desc = '[T]erminal [H]ere' })
-vim.keymap.set('n', '<leader>tH', toggle_new_terminal_here, { desc = '[T]erminal [H]ere new' })
-
 -- Map Ctrl-t in normal and terminal modes
-vim.keymap.set('n', '<C-t>', toggle_terminal, { desc = '[T]oggle Terminal' })
+vim.keymap.set('n', '<C-t>', function()
+  vim.cmd 'startinsert'
+  toggle_terminal()
+end, { desc = '[T]oggle Terminal' })
 vim.keymap.set('t', '<C-t>', function()
-  -- Leave terminal insert mode and toggle the terminal
-  vim.api.nvim_command 'stopinsert'
+  vim.cmd 'stopinsert'
   toggle_terminal()
 end, { desc = '[T]oggle Terminal' })
 
