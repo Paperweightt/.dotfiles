@@ -1,4 +1,44 @@
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+-- Declare a global function to retrieve the current directory
+local function get_oil_winbar()
+  local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+  local dir = require('oil').get_current_dir(bufnr)
+  if dir then
+    return vim.fn.fnamemodify(dir, ':~')
+  else
+    -- If there is no current directory (e.g. over ssh), just show the buffer name
+    return vim.api.nvim_buf_get_name(0)
+  end
+end
+
+-- require("oil").setup({
+--   win_options = {
+--     winbar = "%!v:lua.get_oil_winbar()",
+--   },
+-- })
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'oil',
+--   callback = function()
+--     local oil = require 'oil'
+--
+--     -- Override <CR> just in oil
+--     vim.keymap.set('n', '<CR>', function()
+--       local entry = oil.get_cursor_entry()
+--       if not entry then
+--         return
+--       end
+--
+--       -- Check if it's an .exe file
+--       if entry.name:match '%.exe$' then
+--         -- If it is, run it
+--         vim.fn.jobstart(entry.name, { detach = true })
+--       else
+--         -- Otherwise use oil's default open
+--         oil.open()
+--       end
+--     end, { buffer = true })
+--   end,
+-- })
 
 return {
   'stevearc/oil.nvim',
@@ -73,6 +113,19 @@ return {
       keymaps = {
         ['g?'] = { 'actions.show_help', mode = 'n' },
         ['<CR>'] = 'actions.select',
+        ['<C-CR>'] = {
+          callback = function()
+            local bufnr = vim.api.nvim_get_current_buf()
+            local oil = require 'oil'
+            local dir = oil.get_current_dir(bufnr)
+            local entry = oil.get_cursor_entry().name
+            local full_path = dir .. entry
+
+            -- vim.system({ 'explorer.exe', full_path }, { detach = true })
+
+            os.execute('start "" "' .. full_path .. '"')
+          end,
+        },
         ['<C-s>'] = false,
         ['<C-h>'] = false,
         ['<C-t>'] = false,

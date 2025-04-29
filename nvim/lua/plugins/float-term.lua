@@ -41,7 +41,7 @@ vim.keymap.set('t', '<C-h>', function()
   local term_buf = state.floating.buf
   local chan_id = vim.b[term_buf].terminal_job_id
 
-  vim.fn.chansend(chan_id, { 'cd ' .. state.prev_buf.path .. '\r\n' })
+  vim.fn.chansend(chan_id, { 'cd "' .. state.prev_buf.path .. '"\r\n' })
 end, { noremap = true, silent = true })
 
 vim.keymap.set('t', '<C-n>', function()

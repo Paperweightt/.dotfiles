@@ -26,11 +26,6 @@ vim.api.nvim_create_autocmd('VimResized', {
   end,
 })
 
-function CdToBufferDirectory()
-  local current_buffer_path = vim.fn.expand '%:p:h'
-  vim.cmd('cd ' .. current_buffer_path)
-end
-
 -- Ctrl+S to save the file
 vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-s>', function()

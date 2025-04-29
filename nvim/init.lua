@@ -249,6 +249,15 @@ require('lazy').setup({
 
       local servers = {
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+        omnisharp = {
+          handlers = {}, -- whatever handlers you're using
+          enable_editorconfig_support = true,
+          enable_roslyn_analyzers = true,
+          organize_imports_on_format = true,
+          enable_import_completion = true,
+          -- Add this:
+          root_dir = require('lspconfig').util.root_pattern('*.sln', '*.csproj', '.git'),
+        },
 
         lua_ls = {
           -- cmd = {...},
