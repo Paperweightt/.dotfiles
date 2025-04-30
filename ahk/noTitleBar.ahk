@@ -3,6 +3,7 @@
 remove := true
 Programs := [
     "ahk_exe Neovide.exe",
+    ;"ahk_exe Neo.exe",
     "ahk_class ConsoleWindowClass"
 ]
 
@@ -35,13 +36,13 @@ restoreTitleBar() {
 }
 
 ;- Remove Caption (Title Bar)
-^e::{
-    global remove
-
-    if remove == true {
-        remove := false
-        restoreTitleBar()
-    } else {
-        remove := true
-    }
-}
+;^e::{
+;    global remove
+;
+;    if remove == true {
+;        remove := false
+;        restoreTitleBar()
+;    } else {
+;        remove := true
+;    }
+;}

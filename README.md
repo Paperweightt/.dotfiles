@@ -1,53 +1,57 @@
 ## Dotfiles - Windows 11
 
 ## Installation
->``` powershell
->winget install --id Git.Git -e --source winget
->winget install --id GitHub.cli
->winget install Neovim.Neovim
->winget install GlazeWM
->winget install "Flow Launcher"
->winget install Node.JS
+
+> ```powershell
+> winget install --id Git.Git -e --source winget
+> winget install --id GitHub.cli
+> winget install Neovim.Neovim
+> winget install GlazeWM
+> winget install "Flow Launcher"
+> winget install Node.JS
 >
->npm install --save-dev --save-exact prettier
+> npm install --save-dev --save-exact prettier
 >
->scoop bucket add extras
->scoop install neovide
->scoop install extras/yasb
->```
+> scoop bucket add extras
+> scoop install neovide
+> scoop install extras/yasb
+> ```
 
 ## Setup-1 Clone Repo and Initialize
->``` powershell
->cd $home
->gh repo clone Paperweightt/dotfiles
->.\.dotfiles\init.ps1
->```
+
+> ```powershell
+> cd $home
+> gh repo clone Paperweightt/dotfiles
+> .\.dotfiles\init.ps1
+> ```
 
 ## Setup-2 Manual Setup
->```
->Flowlauncher
->Tridactyl
->```
+
+> ```
+> Flowlauncher
+> Tridactyl
+> ```
 
 # Linux - Neovim Only
->``` bash
->cd $XDG_CONFIG_HOME/
->
->rm nvim -f -r
->
->git clone --filter=blob:none --no-checkout https://github.com/Paperweightt/dotfiles
->cd dotfiles
->git sparse-checkout init --cone
->git sparse-checkout set examples/blog
->git checkout
->
->mv nvim ../
->cd ../
->rm ./dotfiles -f -r
->```
 
+> ```bash
+> cd $XDG_CONFIG_HOME/
+>
+> rm nvim -f -r
+>
+> git clone --filter=blob:none --no-checkout https://github.com/Paperweightt/dotfiles
+> cd dotfiles
+> git sparse-checkout init --cone
+> git sparse-checkout set examples/blog
+> git checkout
+>
+> mv nvim ../
+> cd ../
+> rm ./dotfiles -f -r
+> ```
 
 ## Keybinds
+
 ```
 - GlazeWm
     - Alt+HJKL       | Move focus
@@ -65,13 +69,12 @@
 - Powertoys
     - Ctrl+Shift+C   | Screen Color Picker
 - AutoHotkey
-    - general
-        - Ctrl+E     | Toggle title bar for neovide and powershell (buggy)
     - minecraft
         - Ctrl+F     | Reload minecraft
 ```
 
 ## Alternatives
+
 ```
 - Neovim - Code editor
     - Visual Studio Code
@@ -90,19 +93,17 @@
 ```
 
 ## My Todo List
+
 ```
-- Missing Info 
+- Missing Info
     - Download
         - Powertoys
-        - Wezterm
     - Configs
-        - Wezterm
         - Flow Launcher
         - Obsidian
         - Vencord
         - Spicetify
 - Configure
-    - Wezterm
     - Flow launcher
         - Theme
         - Better plugins

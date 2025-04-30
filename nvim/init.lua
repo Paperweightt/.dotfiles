@@ -100,15 +100,7 @@ require('lazy').setup({
       },
     },
   },
-
-  -- NOTE: Plugins can specify dependencies.
-  --
-  -- The dependencies are proper plugin specifications as well - anything
-  -- you do for a plugin at the top level, you can do for a dependency.
-  --
-  -- Use the `dependencies` key to specify the dependencies of a particular plugin
-
-  { -- Fuzzy Finder (files, lsp, etc)
+  {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',
@@ -196,25 +188,18 @@ require('lazy').setup({
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
+      local capabilities = require('blink-cmp').get_lsp_capabilities()
+      require('lspconfig').lua_ls.setup { capabilities = capabilities }
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          -- NOTE: Remember that lua is a real programming language, and as such it is possible
-          -- to define small helper and utility functions so you don't have to repeat yourself
-          -- many times.
-          --
-          -- In this case, we create a function that lets us more easily define mappings specific
-          -- for LSP related items. It sets the mode, buffer and description for us each time.
           local map = function(keys, func, desc)
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
           end
@@ -244,9 +229,6 @@ require('lazy').setup({
         end,
       })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
       local servers = {
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         omnisharp = {
@@ -268,20 +250,14 @@ require('lazy').setup({
               runtime = { version = 'LuaJIT' },
               workspace = {
                 checkThirdParty = false,
-                -- Tells lua_ls where to find all the Lua files that you have loaded
-                -- for your neovim configuration.
                 library = {
                   '${3rd}/luv/library',
                   unpack(vim.api.nvim_get_runtime_file('', true)),
                 },
-                -- If lua_ls is really slow on your computer, you can try this instead:
-                -- library = { vim.env.VIMRUNTIME },
               },
               completion = {
                 callSnippet = 'Replace',
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -308,8 +284,7 @@ require('lazy').setup({
       }
     end,
   },
-
-  { -- Autoformat
+  {
     'stevearc/conform.nvim',
     opts = {
       notify_on_error = false,
@@ -318,28 +293,18 @@ require('lazy').setup({
         lsp_fallback = true,
       },
       formatters_by_ft = {
+        json = { 'prettierd' }, -- better than lsp_fallback
+        yaml = { 'prettierd' },
+        markdown = { 'prettierd' }, -- > better lsp_fallback
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
         javascript = { 'prettierd' },
-        json = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
         css = { 'prettierd' },
         html = { 'prettierd' },
       },
-      formatters = {
-        prettierd = { -- might not work for prettierd (for testing use cli "prettierd stop")
-          command = 'prettierd',
-          extra_args = {
-            '--use-tabs=false',
-            '--tab-width=4',
-            '--semi=false',
-            '--print-width=105',
-          },
-        },
-      },
+      formatters = {},
     },
   },
   -- Highlight todo, notes, etc in comments
