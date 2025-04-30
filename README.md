@@ -54,7 +54,7 @@
     - Alt+Shift+HJKL | Move focused window
     - Alt+123        | Move focus to screen 1 2 3
     - Alt+Shift+123  | Move window to screen 1 2 3
-    - Alt+Shift+HJKL | Resize window
+    - Alt+Ctrl+HJKL  | Resize window
     - Alt+F          | Toggle window to float
     - Alt+T          | Toggle window to tiling
     - Alt+M          | Toggle window to maximize

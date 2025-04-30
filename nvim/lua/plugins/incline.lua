@@ -9,7 +9,8 @@ return {
         },
       },
       render = function(props)
-        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
+        local buf_name = vim.api.nvim_buf_get_name(props.buf)
+        local filename = vim.fn.fnamemodify(buf_name, ':t')
         if filename == '' then
           filename = '[No Name]'
         end
@@ -36,6 +37,7 @@ return {
           { (ft_icon or '') .. ' ', guifg = ft_color, guibg = 'none' },
           { filename, gui = vim.bo[props.buf].modified and 'bold,italic' or 'bold' },
         }
+        -- end
       end,
     }
   end,

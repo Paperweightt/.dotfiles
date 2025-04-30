@@ -33,7 +33,7 @@ bars:
         "media",
       ]
       center: ["taskbar"]
-      right: ["clock","weather"]
+      right: ["clock"]
 widgets:
   active_window:
     type: "yasb.active_window.ActiveWindowWidget"
