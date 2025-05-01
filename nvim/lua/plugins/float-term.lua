@@ -40,8 +40,18 @@ vim.api.nvim_create_autocmd('VimResized', {
 vim.keymap.set('t', '<C-h>', function()
   local term_buf = state.floating.buf
   local chan_id = vim.b[term_buf].terminal_job_id
+  local path = state.prev_buf.path
+  local prefix = 'oil'
 
-  vim.fn.chansend(chan_id, { 'cd "' .. state.prev_buf.path .. '"\r\n' })
+  if not path then
+    return
+  end
+
+  if string.sub(path, 1, #prefix) == prefix then
+    path = 'C:' .. string.sub(path, 9)
+  end
+
+  vim.fn.chansend(chan_id, { 'cd "' .. path .. '"\r\n' })
 end, { noremap = true, silent = true })
 
 vim.keymap.set('t', '<C-n>', function()
