@@ -20,7 +20,7 @@
 ## Setup-1 Clone Repo and Initialize
 
 > ```powershell
-> cd $home
+> cd $HOME
 > gh repo clone Paperweightt/dotfiles
 > .\.dotfiles\init.ps1
 > ```
@@ -47,7 +47,7 @@
 >
 > mv nvim ../
 > cd ../
-> rm ./dotfiles -f -r
+> rm ./.dotfiles -f -r
 > ```
 
 ## Keybinds
@@ -101,8 +101,6 @@
     - Configs
         - Flow Launcher
         - Obsidian
-        - Vencord
-        - Spicetify
 - Configure
     - Flow launcher
         - Theme

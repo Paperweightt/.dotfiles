@@ -1,14 +1,15 @@
 ## path variables
-$env:mojang = Join-Path $env:USERPROFILE "AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang"
-$env:packs = Join-Path $env:USERPROFILE "\OneDrive\Desktop\packs"
-$env:code = "C:\Code"
-$env:dotf = Join-Path $HOME "\.dotfiles"
-$env:startup = [Environment]::GetFolderPath("Startup")
-$env:projects = Join-Path $HOME "\Project"
+$env:MOJANG = Join-Path $env:USERPROFILE "AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang"
+$env:PACKS = Join-Path $env:USERPROFILE "\OneDrive\Desktop\packs"
+$env:CODE = "C:\Code"
+$env:DOTF = Join-Path $HOME "\.dotfiles"
+$env:STARTUP = [Environment]::GetFolderPath("Startup")
+$env:PROJECTS = Join-Path $HOME "\Projects"
+$env:DOWNLOADS = Join-Path $HOME "\Downloads"
 
-function nvide
+function neo
 {
-    & "$HOME\.dotfiles\neovide\launcher.ps1"
+    & "$HOME\.dotfiles\neo\neo.ps1"
 }
 
 function Admin
