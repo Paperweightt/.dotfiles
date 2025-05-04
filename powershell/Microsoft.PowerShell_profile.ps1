@@ -6,6 +6,8 @@ $env:DOTF = Join-Path $HOME "\.dotfiles"
 $env:STARTUP = [Environment]::GetFolderPath("Startup")
 $env:PROJECTS = Join-Path $HOME "\Projects"
 $env:DOWNLOADS = Join-Path $HOME "\Downloads"
+$env:HOME = $HOME
+$env:TODO = Join-Path $HOME "\Todos"
 
 function neo
 {
