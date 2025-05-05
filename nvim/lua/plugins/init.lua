@@ -26,6 +26,15 @@ vim.api.nvim_create_autocmd('VimResized', {
   end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = {
+    '*.json',
+  },
+  callback = function()
+    vim.bo.filetype = 'jsonc'
+  end,
+})
+
 -- Ctrl+S to save the file
 vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-s>', function()

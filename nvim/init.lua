@@ -188,15 +188,13 @@ require('lazy').setup({
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
+      'b0o/schemastore.nvim',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
-      local capabilities = require('blink-cmp').get_lsp_capabilities()
-      require('lspconfig').lua_ls.setup { capabilities = capabilities }
-
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -230,21 +228,17 @@ require('lazy').setup({
       })
 
       local servers = {
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        omnisharp = {
-          handlers = {}, -- whatever handlers you're using
-          enable_editorconfig_support = true,
-          enable_roslyn_analyzers = true,
-          organize_imports_on_format = true,
-          enable_import_completion = true,
-          -- Add this:
-          root_dir = require('lspconfig').util.root_pattern('*.sln', '*.csproj', '.git'),
+        jsonls = {
+          filetypes = { 'json', 'jsonc' },
+          settings = {
+            json = {
+              schemas = require('schemastore').json.schemas(),
+              validate = { enable = true },
+            },
+          },
         },
 
         lua_ls = {
-          -- cmd = {...},
-          -- filetypes { ...},
-          -- capabilities = {},
           settings = {
             Lua = {
               runtime = { version = 'LuaJIT' },
@@ -265,12 +259,7 @@ require('lazy').setup({
 
       require('mason').setup()
 
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format lua code
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
+      local capabilities = require('blink-cmp').get_lsp_capabilities()
       require('mason-lspconfig').setup {
         ensure_installed = {},
         automatic_installation = false,
@@ -295,7 +284,7 @@ require('lazy').setup({
       formatters_by_ft = {
         json = { 'prettierd' }, -- better than lsp_fallback
         yaml = { 'prettierd' },
-        markdown = { 'prettierd' }, -- > better lsp_fallback
+        markdown = { 'prettierd' }, -- better than lsp_fallback
         lua = { 'stylua' },
         javascript = { 'prettierd' },
         javascriptreact = { 'prettierd' },
