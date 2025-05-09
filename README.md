@@ -82,7 +82,7 @@
     - Emacs
     - Helix
 - GlazeWm - Windows tiling manager
-    - Komorebi (configured)
+    - Komorebi
 - Yasb - Top bar
     - Zebar
 - Flow Launcher - Quick launcher
@@ -90,6 +90,8 @@
 - Tridactyl - Browser vim keybinds
     - Vimium
     - Vimium C
+- Zen - Browser
+    - Brave
 ```
 
 ## My Todo List
