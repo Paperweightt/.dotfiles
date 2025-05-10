@@ -56,8 +56,8 @@
 - GlazeWm
     - Alt+HJKL       | Move focus
     - Alt+Shift+HJKL | Move focused window
-    - Alt+1234        | Move focus to screen 1 2 3 4
-    - Alt+Shift+1234  | Move window to screen 1 2 3 4
+    - Alt+1234       | Move focus to screen 1 2 3 4
+    - Alt+Shift+1234 | Move window to screen 1 2 3 4
     - Alt+Ctrl+HJKL  | Resize window
     - Alt+F          | Toggle window to float
     - Alt+T          | Toggle window to tiling
