@@ -8,6 +8,7 @@
 > winget install Neovim.Neovim
 > winget install GlazeWM
 > winget install "Flow Launcher"
+> winget install JanDeDobbeleer.OhMyPosh -s winget
 > winget install Node.JS
 >
 > npm install --save-dev --save-exact prettier

@@ -28,3 +28,5 @@ if ($profileContent -notmatch [regex]::Escape($dotfilesProfilePath))
 {
     Write-Host "Dotfiles profile already sourced in $profilePath"
 }
+
+

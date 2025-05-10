@@ -8,6 +8,7 @@ $env:PROJECTS = Join-Path $HOME "\Projects"
 $env:DOWNLOADS = Join-Path $HOME "\Downloads"
 $env:HOME = $HOME
 $env:TODO = Join-Path $HOME "\Todos"
+$env:PICTURES = Join-Path $HOME "\Onedrive\Pictures"
 
 function neo
 {
@@ -23,3 +24,5 @@ function Admin
         exit
     }
 }
+
+oh-my-posh init pwsh --config "C:\Users\henry\.dotfiles\powershell\oh-my-posh.omp.json"| Invoke-Expression
