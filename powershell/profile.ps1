@@ -7,7 +7,8 @@ $env:STARTUP = [Environment]::GetFolderPath("Startup")
 $env:PROJECTS = Join-Path $HOME "\Projects"
 $env:DOWNLOADS = Join-Path $HOME "\Downloads"
 $env:HOME = $HOME
-$env:TODO = Join-Path $HOME "\Todos"
+$env:TODO = Join-Path $HOME "\Notes\Todos"
+$env:NOTES = Join-Path $HOME "\Notes"
 $env:PICTURES = Join-Path $HOME "\Onedrive\Pictures"
 
 function neo

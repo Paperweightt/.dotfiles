@@ -33,7 +33,7 @@
 > Tridactyl
 > ```
 
-# Linux - Neovim Only
+## Linux - Neovim Only
 
 > ```bash
 > cd $XDG_CONFIG_HOME/

@@ -26,7 +26,7 @@
   "githubPullRequests.createOnPublishBranch": "never",
   "output.smartScroll.enabled": false,
   "workbench.iconTheme": "vscode-icons",
-  "glassit.alpha": 165,
+  "glassit.alpha": 240,
   "editor.minimap.enabled": false,
   "workbench.layoutControl.enabled": false,
   "vsicons.dontShowNewVersionMessage": true,
