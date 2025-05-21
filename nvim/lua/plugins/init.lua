@@ -4,9 +4,9 @@ vim.opt.foldmethod = 'manual'
 
 -- tabbing
 vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.shiftwidth = 4 -- Number of spaces for each indentation level
-vim.opt.tabstop = 4 -- Number of spaces per tab
-vim.opt.softtabstop = 4 -- Makes backspace delete like a tab
+vim.opt.shiftwidth = 2 -- Number of spaces for each indentation level
+vim.opt.tabstop = 2 -- Number of spaces per tab
+vim.opt.softtabstop = 2 -- Makes backspace delete like a tab
 
 -- visuals
 vim.opt.wrap = true
@@ -18,6 +18,15 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.laststatus = 0
 vim.opt.fillchars = 'eob: '
+
+vim.keymap.set('n', '<leader>rl', function()
+  local ok, err = pcall(dofile, vim.fn.expand '%')
+  if not ok then
+    vim.notify('Lua Error:\n' .. err, vim.log.levels.ERROR)
+  else
+    vim.notify('Lua file executed successfully', vim.log.levels.INFO)
+  end
+end, { desc = 'Run current Lua file with error reporting' })
 
 vim.api.nvim_create_autocmd('VimResized', {
   desc = 'resize splits',

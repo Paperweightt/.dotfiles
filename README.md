@@ -33,7 +33,7 @@
 > Tridactyl
 > ```
 
-## Linux - Neovim Only
+## Neovim Only - Linux
 
 > ```bash
 > cd $XDG_CONFIG_HOME/
@@ -55,59 +55,66 @@
 
 ```
 - GlazeWm
-    - Alt+HJKL       | Move focus
-    - Alt+Shift+HJKL | Move focused window
-    - Alt+1234       | Move focus to screen 1 2 3 4
-    - Alt+Shift+1234 | Move window to screen 1 2 3 4
-    - Alt+Ctrl+HJKL  | Resize window
-    - Alt+F          | Toggle window to float
-    - Alt+T          | Toggle window to tiling
-    - Alt+M          | Toggle window to maximize
-    - Alt+N          | Toggle window to minimize
-    - Alt+A          | Toggle tiling direction
-    - Alt+Q          | Close window
-    - Alt+R          | Reload glazeWm config
+  - Alt+HJKL       | Move focus
+  - Alt+Shift+HJKL | Move focused window
+  - Alt+1234       | Move focus to screen 1 2 3 4
+  - Alt+Shift+1234 | Move window to screen 1 2 3 4
+  - Alt+Ctrl+HJKL  | Resize window
+  - Alt+F          | Toggle window to float
+  - Alt+T          | Toggle window to tiling
+  - Alt+M          | Toggle window to maximize
+  - Alt+N          | Toggle window to minimize
+  - Alt+A          | Toggle tiling direction
+  - Alt+Q          | Close window
+  - Alt+R          | Reload glazeWm config
 - Powertoys
-    - Ctrl+Shift+C   | Screen Color Picker
+  - Ctrl+Shift+C   | Screen Color Picker
 - AutoHotkey
-    - minecraft
-        - Ctrl+F     | Reload minecraft
+  - minecraft
+    - Ctrl+F       | Reload minecraft
 ```
 
 ## Alternatives
 
 ```
 - Neovim - Code editor
-    - Visual Studio Code
-    - Zed
-    - Emacs
-    - Helix
+  - Visual Studio Code
+  - Zed
+  - Emacs
+  - Helix
 - GlazeWm - Windows tiling manager
-    - Komorebi
+  - Komorebi
 - Yasb - Top bar
-    - Zebar
+  - Zebar
 - Flow Launcher - Quick launcher
-    - PowerToys Run
+  - PowerToys Run
 - Tridactyl - Browser vim keybinds
-    - Vimium
-    - Vimium C
+  - Vimium
+  - Vimium C
 - Zen - Browser
-    - Brave
+  - Brave
 ```
 
 ## My Todo List
 
 ```
 - Missing Info
-    - Download
-        - Powertoys
-    - Configs
-        - Flow Launcher
-        - Obsidian
+  - Download
+    - Powertoys
+  - Configs
+    - Flow Launcher
+    - Obsidian
 - Configure
-    - Flow launcher
-        - Theme
-        - Better plugins
+  - Flow launcher
+    - Theme
+    - Better plugins
 - Wants
-    - Dedicated markdown displayer
+  - Dedicated markdown displayer
+```
+
+## Custom Tooling
+
+```
+- Neo
+  - Launches neovide with powershell so it has powershell variables
 ```
