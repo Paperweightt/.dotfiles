@@ -20,10 +20,10 @@ vim.opt.cursorline = true
 vim.opt.hlsearch = true
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix' })
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous [D]iagnostic message' })
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next [D]iagnostic message' })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror messages' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -43,10 +43,11 @@ local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
-end ---@diagnostic disable-next-line: undefined-field
+end
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
+require('lazy').setup {
   'tpope/vim-sleuth',
   'numToStr/Comment.nvim',
 
@@ -281,6 +282,7 @@ require('lazy').setup({
         lsp_fallback = true,
       },
       formatters_by_ft = {
+        rust = { 'rustfmt' },
         json = { 'prettierd' }, -- better than lsp_fallback
         yaml = { 'prettierd' },
         markdown = { 'prettierd' }, -- better than lsp_fallback
@@ -313,6 +315,7 @@ require('lazy').setup({
       require('nvim-treesitter.configs').setup {
         ensure_installed = {
           'bash',
+          'rust',
           'c',
           'html',
           'css',
@@ -338,7 +341,6 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
 
   { import = 'plugins' },
-}, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
@@ -356,7 +358,7 @@ require('lazy').setup({
       lazy = '💤',
     },
   },
-})
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
