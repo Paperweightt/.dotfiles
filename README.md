@@ -83,6 +83,7 @@
   - Emacs
   - Helix
 - GlazeWm - Windows tiling manager
+  - Workspacer
   - Komorebi
 - Yasb - Top bar
   - Zebar

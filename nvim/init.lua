@@ -185,7 +185,6 @@ require('lazy').setup {
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -239,19 +238,17 @@ require('lazy').setup {
         },
 
         lua_ls = {
+          -- cmd = { ... },
+          -- filetypes = { ... },
+          -- capabilities = {},
           settings = {
             Lua = {
-              runtime = { version = 'LuaJIT' },
-              workspace = {
-                checkThirdParty = false,
-                library = {
-                  '${3rd}/luv/library',
-                  unpack(vim.api.nvim_get_runtime_file('', true)),
-                },
-              },
               completion = {
                 callSnippet = 'Replace',
               },
+              -- diagnostics = { globals = { 'vim' } },
+              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+              -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -294,7 +291,6 @@ require('lazy').setup {
         css = { 'prettierd' },
         html = { 'prettierd' },
       },
-      formatters = {},
     },
   },
   -- Highlight todo, notes, etc in comments
@@ -306,7 +302,6 @@ require('lazy').setup {
       require('mini.ai').setup { n_lines = 500 }
     end,
   },
-
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -336,10 +331,6 @@ require('lazy').setup {
       }
     end,
   },
-
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-
   { import = 'plugins' },
   ui = {
     icons = vim.g.have_nerd_font and {} or {
