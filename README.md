@@ -53,25 +53,31 @@
 
 ## Keybinds
 
+[Oryx: The ZSA Keyboard Configurator](https://configure.zsa.io/voyager/layouts/qGely/latest/0)
+
 ```
 - GlazeWm
-  - Alt+HJKL       | Move focus
-  - Alt+Shift+HJKL | Move focused window
-  - Alt+1234       | Move focus to screen 1 2 3 4
-  - Alt+Shift+1234 | Move window to screen 1 2 3 4
-  - Alt+Ctrl+HJKL  | Resize window
-  - Alt+F          | Toggle window to float
-  - Alt+T          | Toggle window to tiling
-  - Alt+M          | Toggle window to maximize
-  - Alt+N          | Toggle window to minimize
-  - Alt+A          | Toggle tiling direction
-  - Alt+Q          | Close window
-  - Alt+R          | Reload glazeWm config
+  - Alt+HJKL           | Move focus
+  - Alt+Shift+HJKL     | Move focused window
+  - Alt+yuio           | Move focus to screen 1 2 3 4
+  - Alt+Shift+yuio     | Move window to screen 1 2 3 4
+  - Alt+Ctrl+HJKL      | Resize window
+  - Alt+F              | Toggle window to float
+  - Alt+T              | Toggle window to tiling
+  - Alt+M              | Toggle window to maximize
+  - Alt+N              | Toggle window to minimize
+  - Alt+A              | Toggle tiling direction
+  - Alt+Q              | Close window
+  - Alt+R              | Reload glazeWm config
 - Powertoys
-  - Ctrl+Shift+C   | Screen Color Picker
+  - Ctrl+Shift+C       | Screen color picker
 - AutoHotkey
+  - global
+    - Alt+Shift+Ctrl+M | focus or open music
+    - Alt+Shift+Ctrl+D | focus or open discord
+    - Alt+Shift+Ctrl+B | focus or open browser
   - minecraft
-    - Ctrl+F       | Reload minecraft
+    - Ctrl+F           | Reload minecraft
 ```
 
 ## Alternatives
@@ -108,7 +114,6 @@
 - Configure
   - Flow launcher
     - Theme
-    - Better plugins
 - Wants
   - Dedicated markdown displayer
 ```
