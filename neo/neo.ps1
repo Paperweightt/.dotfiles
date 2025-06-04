@@ -1,5 +1,8 @@
 $profilePath = "$home/.dotfiles/powershell/profile.ps1"
-$version = "0.1.0"
+$version = "0.1.1"
+$prev_location = Get-Location
+
+Set-Location "C:\"
 
 if (Test-Path $profilePath)
 {
@@ -17,3 +20,5 @@ if ($args -contains "--version")
 }
 
 & "neovide" @args
+
+Set-Location $prev_location
