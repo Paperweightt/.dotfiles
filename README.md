@@ -73,9 +73,10 @@
   - Ctrl+Shift+C       | Screen color picker
 - AutoHotkey
   - global
-    - Alt+Shift+Ctrl+M | focus or open music
+    - Alt+Shift+Ctrl+S | focus or open spotify
     - Alt+Shift+Ctrl+D | focus or open discord
-    - Alt+Shift+Ctrl+B | focus or open browser
+    - Alt+Shift+Ctrl+Z | focus or open zen browser
+    - Alt+Shift+Ctrl+C | focus or open code editor
   - minecraft
     - Ctrl+F           | Reload minecraft
 ```
