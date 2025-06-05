@@ -2,6 +2,7 @@ $profilePath = "$home/.dotfiles/powershell/profile.ps1"
 $version = "0.1.1"
 $prev_location = Get-Location
 
+# for use with auto-sessions to allow for gobal sessions
 Set-Location "C:\"
 
 if (Test-Path $profilePath)
@@ -12,7 +13,6 @@ if (Test-Path $profilePath)
     Write-Error "profile not found"
 }
 
-# this does not work lol
 if ($args -contains "--version")
 {
     Write-Output "neo v$version"

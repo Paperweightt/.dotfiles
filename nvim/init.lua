@@ -1,7 +1,10 @@
+-- leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
 vim.g.have_nerd_font = true
 vim.opt.mouse = 'a'
+
 vim.opt.showmode = false
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.breakindent = true
@@ -14,22 +17,100 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.hlsearch = true
+vim.opt.swapfile = false
 
+-- fold
+vim.opt.foldenable = false
+vim.opt.foldmethod = 'manual'
+
+-- tabbing
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.shiftwidth = 2   -- Number of spaces for each indentation level
+vim.opt.tabstop = 2      -- Number of spaces per tab
+vim.opt.softtabstop = 2  -- Makes backspace delete like a tab
+
+-- visuals
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.scrolloff = 12
+vim.opt.cursorline = true
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.laststatus = 0
+
+vim.opt.fillchars = 'eob: '
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+require 'neovide'
+require 'lsp'
 -- Diagnostic keymaps
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous [D]iagnostic message' })
 -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next [D]iagnostic message' })
 -- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror messages' })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix' })
 
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<leader>rl', function()
+  local ok, err = pcall(dofile, vim.fn.expand '%')
+  if not ok then
+    vim.notify('Lua Error:\n' .. err, vim.log.levels.ERROR)
+  else
+    vim.notify('Lua file executed successfully', vim.log.levels.INFO)
+  end
+end, { desc = 'Run current Lua file with error reporting' })
+
+vim.api.nvim_create_autocmd('VimResized', {
+  desc = 'resize splits',
+  callback = function()
+    vim.cmd 'wincmd ='
+  end,
+})
+
+-- Ctrl+S to save the file
+vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-s>', function()
+  vim.cmd 'w'
+end, { noremap = true, silent = true })
+
+vim.keymap.set('v', '<leader>r', function()
+  -- Get the selected text
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'x', false)
+
+  local start_pos = vim.fn.getpos "'<"
+  local end_pos = vim.fn.getpos "'>"
+  local lines = vim.fn.getline(start_pos[2], end_pos[2])
+
+  -- Extract the selected text
+  local selected_text
+  if #lines == 1 then
+    -- Single-line selection
+    selected_text = string.sub(lines[1], start_pos[3], end_pos[3])
+  else
+    -- Multi-line selection
+    lines[1] = string.sub(lines[1], start_pos[3])
+    lines[#lines] = string.sub(lines[#lines], 1, end_pos[3])
+    selected_text = table.concat(lines, '\n')
+  end
+
+  -- Print or process the selected text
+  print(selected_text)
+
+  -- Prompt for replacement text
+  local replacement = vim.fn.input('Replace"' .. selected_text .. '" with? ')
+  if replacement ~= '' then
+    -- Execute the substitution
+    vim.cmd('%s/\\V' .. vim.fn.escape(selected_text, '\\') .. '/' .. vim.fn.escape(replacement, '\\') .. '/g')
+  end
+end, {
+  desc = '[R]eplace visual selection',
+})
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -91,7 +172,7 @@ require('lazy').setup {
 
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode',     mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
@@ -123,7 +204,7 @@ require('lazy').setup {
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       require('telescope').setup {
@@ -185,91 +266,6 @@ require('lazy').setup {
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-  { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      'b0o/schemastore.nvim',
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-    },
-    config = function()
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-        callback = function(event)
-          local map = function(keys, func, desc)
-            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
-          end
-
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, '[D]efinition')
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-          map('K', vim.lsp.buf.hover, 'Hover Documentation')
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.server_capabilities.documentHighlightProvider then
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.document_highlight,
-            })
-
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.clear_references,
-            })
-          end
-        end,
-      })
-
-      local servers = {
-        jsonls = {
-          filetypes = { 'json', 'jsonc' },
-          settings = {
-            json = {
-              schemas = require('schemastore').json.schemas(),
-              validate = { enable = true },
-            },
-          },
-        },
-
-        lua_ls = {
-          -- cmd = { ... },
-          -- filetypes = { ... },
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- diagnostics = { globals = { 'vim' } },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
-      }
-
-      require('mason').setup()
-
-      local capabilities = require('blink-cmp').get_lsp_capabilities()
-      require('mason-lspconfig').setup {
-        ensure_installed = {},
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
-    end,
-  },
   {
     'stevearc/conform.nvim',
     opts = {
@@ -280,7 +276,7 @@ require('lazy').setup {
       },
       formatters_by_ft = {
         rust = { 'rustfmt' },
-        json = { 'prettierd' }, -- better than lsp_fallback
+        json = { 'prettierd' },     -- better than lsp_fallback
         yaml = { 'prettierd' },
         markdown = { 'prettierd' }, -- better than lsp_fallback
         lua = { 'stylua' },
