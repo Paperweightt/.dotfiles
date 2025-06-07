@@ -9,7 +9,6 @@ local link_hl_group = "ZKLink"
 
 vim.api.nvim_set_hl(0, link_hl_group, {
   underline = true,
-  -- fg = "#ff8800", -- optional foreground color
 })
 
 ---@class Tag
@@ -74,7 +73,7 @@ end
 ---@param note_id string
 ---@return Note
 local function get_note(note_id)
-  local cmd = 'rg --no-heading --with-filename --column --line-number -g "*.md" ' ..
+  local cmd = 'rg --no-heading -i --with-filename --column --line-number -g "*.md" ' ..
       '"# ' .. note_id .. '" "' .. note_dir .. '"'
   local handle = io.popen(cmd)
   if not handle then return {} end
@@ -176,22 +175,39 @@ local function note_search()
 end
 
 
+--- Checks if any extmark exists at a specific row and col in a buffer
+---@param bufnr number
+---@param ns_id number
+---@param row number -- 0-based
+---@param col number -- 0-based
+---@return boolean
+local function has_extmark_at(bufnr, ns_id, row, col)
+  local marks = vim.api.nvim_buf_get_extmarks(bufnr, ns_id, { row, col }, { row, col + 1 }, {
+    details = false
+  })
+  return #marks > 0
+end
+
+--- @param bufnr integer
 local function show_links(bufnr)
   local notes = get_notes()
 
   table.sort(notes, function(a, b)
-    return #a > #b
+    return #a.id > #b.id
   end)
+
+  vim.print(notes)
 
   for _, note in pairs(notes) do
     local line_count = vim.api.nvim_buf_line_count(bufnr)
+    local note_name = note.id:sub(3):lower()
 
     for i = 0, line_count - 1 do
       local line = vim.api.nvim_buf_get_lines(bufnr, i, i + 1, false)[1]
 
-      local start, _end = line:find(note.id:sub(3), 1, true)
+      local start, _end = line:find(note_name, 1, true)
 
-      if start and _end then
+      if start and _end and not has_extmark_at(bufnr, ns_link_id, i, start) then
         vim.api.nvim_buf_set_extmark(bufnr, ns_link_id, i, start - 1, {
           end_col = _end, hl_group = link_hl_group })
       end
@@ -199,33 +215,53 @@ local function show_links(bufnr)
   end
 end
 
-
----@return string | nil
-local function get_link_at_cursor()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local cursor = vim.api.nvim_win_get_cursor(0) -- {line, col}
-  local cursor_line = cursor[1] - 1
-  local cursor_col = cursor[2]
-
+local function get_link(bufnr, row, col)
   -- Get all extmarks with range and details
   local marks = vim.api.nvim_buf_get_extmarks(bufnr, ns_link_id, 0, -1, {
     details = true,
   })
 
   for _, mark in ipairs(marks) do
-    local line, col, details = mark[2], mark[3], mark[4]
-    local end_col = details.end_col or col
-    local end_line = details.end_row or line
+    local mark_row, mark_col, details = mark[2], mark[3], mark[4]
+    local end_col = details.end_col or mark_col
+    local end_line = details.end_row or mark_row
 
-    local in_same_line = cursor_line == line and cursor_line == end_line
-    local in_range = cursor_col >= col and cursor_col < end_col
+    local in_same_line = row == mark_row and row == end_line
+    local in_range = col >= mark_col and col < end_col
 
     if in_same_line and in_range then
-      local text = vim.api.nvim_buf_get_text(bufnr, line, col, end_line, end_col, {})
+      local text = vim.api.nvim_buf_get_text(bufnr, mark_row, mark_col, end_line, end_col, {})
       return table.concat(text, "\n")
-      -- print("Underlined text: " .. table.concat(text, "\n"))
     end
   end
+end
+
+---@return string | nil
+local function get_link_at_cursor()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local cursor = vim.api.nvim_win_get_cursor(0) -- {line, col}
+  local row = cursor[1] - 1
+  local col = cursor[2]
+  return get_link(bufnr, row, col)
+end
+
+local function jump_to_file_and_pos(filepath, line, col)
+  -- Make sure the buffer exists or is created
+  local bufnr = vim.fn.bufadd(filepath)
+  vim.fn.bufload(bufnr) -- Load file contents if not already loaded
+
+  -- Set buffer into the current window
+  vim.api.nvim_win_set_buf(0, bufnr)
+
+  -- Jump to position (line: 1-based, col: 0-based)
+  vim.api.nvim_win_set_cursor(0, { line, col })
+end
+
+--- Clears all link highlights in the given buffer and namespace
+---@param bufnr integer? defaults to current buffer
+local function clear_links(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_clear_namespace(bufnr, ns_link_id, 0, -1)
 end
 
 local function goto_note()
@@ -235,29 +271,29 @@ local function goto_note()
 
   note.location[2] = 2
 
-  vim.cmd("edit " .. note.filename)
-  vim.api.nvim_win_set_cursor(0, note.location)
+  jump_to_file_and_pos(note.filename, note.location[1], note.location[2])
+end
+
+local function update_current_line(bufnr)
+
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
   pattern = "*.md",
   callback = function(event)
+    clear_links(event.buf)
     show_links(event.buf)
   end,
 })
 
--- local function find_note_at_cursor()
---   local word = vim.fn.expand("<cword>")
---   local entry = get_note(word)
---
---   if not entry then return end
---
---   local filepath, line_number, content = entry:match("^(.-):(%d+):(.*)")
---
---   vim.cmd("edit " .. filepath)                                 -- Opens the file
---   vim.api.nvim_win_set_cursor(0, { tonumber(line_number), 0 }) -- Moves the cursor to the line (1-based)
--- end
+
+-- vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+--   pattern = "*.md",
+--   callback = function(event)
+--     update_current_line(event.buf)
+--   end,
+-- })
 
 vim.keymap.set("n", "<leader>zn", note_search, { desc = "[N]otes Search" })
 vim.keymap.set("n", "<leader>zt", tag_search, { desc = "[T]ags Search" })
-vim.keymap.set("n", "gz", goto_note, { desc = "[g]oto [Z]ettelkasten Note" })
+vim.keymap.set("n", "gz", goto_note, { desc = "[G]oto [Z]ettelkasten Note" })
