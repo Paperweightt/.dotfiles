@@ -11,7 +11,7 @@ SetTimer(removeTitleBar, 500)
 
 removeTitleBar() {
     global remove
-    if remove == true { 
+    if remove { 
         Loop Programs.length {
             if WinExist(Programs[A_Index]) {
                 Try {

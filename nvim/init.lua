@@ -299,8 +299,6 @@ require('lazy').setup {
           'powershell',
           'markdown_inline',
           'markdown',
-          'vim',
-          'vimdoc',
           'jsdoc',
           'javascript',
           'gitignore',

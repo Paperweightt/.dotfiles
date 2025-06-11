@@ -138,82 +138,82 @@ binding_modes:
 keybindings:
   # Shift focus in a given direction.
   - commands: ["focus --direction left"]
-    bindings: ["alt+h", "alt+left"]
+    bindings: ["f19+h", "f19+left"]
   - commands: ["focus --direction right"]
-    bindings: ["alt+l", "alt+right"]
+    bindings: ["f19+l", "f19+right"]
   - commands: ["focus --direction up"]
-    bindings: ["alt+k", "alt+up"]
+    bindings: ["f19+k", "f19+up"]
   - commands: ["focus --direction down"]
-    bindings: ["alt+j", "alt+down"]
+    bindings: ["f19+j", "f19+down"]
 
   # Move focused window in a given direction.
   - commands: ["move --direction left"]
-    bindings: ["alt+shift+h", "alt+shift+left"]
+    bindings: ["f19+shift+h", "f19+shift+left"]
   - commands: ["move --direction right"]
-    bindings: ["alt+shift+l", "alt+shift+right"]
+    bindings: ["f19+shift+l", "f19+shift+right"]
   - commands: ["move --direction up"]
-    bindings: ["alt+shift+k", "alt+shift+up"]
+    bindings: ["f19+shift+k", "f19+shift+up"]
   - commands: ["move --direction down"]
-    bindings: ["alt+shift+j", "alt+shift+down"]
+    bindings: ["f19+shift+j", "f19+shift+down"]
 
   # Resize focused window by a percentage or pixel amount.
   - commands: ["resize --width -2%"]
-    bindings: ["alt+ctrl+h"]
+    bindings: ["f19+ctrl+h"]
   - commands: ["resize --width +2%"]
-    bindings: ["alt+ctrl+l"]
+    bindings: ["f19+ctrl+l"]
   - commands: ["resize --height +2%"]
-    bindings: ["alt+ctrl+j"]
+    bindings: ["f19+ctrl+j"]
   - commands: ["resize --height -2%"]
-    bindings: ["alt+ctrl+k"]
+    bindings: ["f19+ctrl+k"]
 
   # Change tiling direction. This determines where new tiling windows will be inserted.
   - commands: ["toggle-tiling-direction"]
-    bindings: ["alt+a"]
+    bindings: ["f19+a"]
 
   # Change focus between floating / tiling windows.
   - commands: ["wm-cycle-focus"]
-    bindings: ["alt+d"]
+    bindings: ["f19+d"]
 
   # Minimize focused window.
   - commands: ["toggle-minimized"]
-    bindings: ["alt+n"]
+    bindings: ["f19+n"]
 
   # Change the focused window to be floating / tiling.
   - commands: ["toggle-floating --centered"]
-    bindings: ["alt+f"]
+    bindings: ["f19+f"]
 
   # Change the focused window to be fullscreen.
   - commands: ["toggle-fullscreen"]
-    bindings: ["alt+m"]
+    bindings: ["f19+m"]
 
   # Change the focused window to be tiling.
   - commands: ["toggle-tiling"]
-    bindings: ["alt+t"]
+    bindings: ["f19+t"]
 
   # Close focused window.
   - commands: ["close"]
-    bindings: ["alt+q"]
+    bindings: ["f19+q"]
 
   # Re-evaluate configuration file.
   - commands: ["wm-reload-config"]
-    bindings: ["alt+r"]
+    bindings: ["f19+r"]
 
   # Change focus to a workspace defined in `workspaces` config.
   - commands: ["focus --workspace 1"]
-    bindings: ["alt+y"]
+    bindings: ["f19+y"]
   - commands: ["focus --workspace 2"]
-    bindings: ["alt+u"]
+    bindings: ["f19+u"]
   - commands: ["focus --workspace 4"]
-    bindings: ["alt+i"]
+    bindings: ["f19+i"]
   - commands: ["focus --workspace 3"]
-    bindings: ["alt+o"]
+    bindings: ["f19+o"]
 
   # Move focused window to a workspace defined in `workspaces` config.
   - commands: ["move --workspace 1", "focus --workspace 1"]
-    bindings: ["alt+shift+y"]
+    bindings: ["f19+shift+y"]
   - commands: ["move --workspace 2", "focus --workspace 2"]
-    bindings: ["alt+shift+u"]
+    bindings: ["f19+shift+u"]
   - commands: ["move --workspace 4", "focus --workspace 4"]
-    bindings: ["alt+shift+i"]
+    bindings: ["f19+shift+i"]
   - commands: ["move --workspace 3", "focus --workspace 3"]
-    bindings: ["alt+shift+o"]
+    bindings: ["f19+shift+o"]

@@ -188,6 +188,8 @@ local function has_extmark_at(bufnr, ns_id, row, col)
   return #marks > 0
 end
 
+-- BUG: words that are in other words get highlighted
+-- BUG: each note only highlights once per line
 --- @param bufnr integer
 local function show_links(bufnr)
   local notes = get_notes()
@@ -195,8 +197,6 @@ local function show_links(bufnr)
   table.sort(notes, function(a, b)
     return #a.id > #b.id
   end)
-
-  vim.print(notes)
 
   for _, note in pairs(notes) do
     local line_count = vim.api.nvim_buf_line_count(bufnr)
@@ -274,10 +274,6 @@ local function goto_note()
   jump_to_file_and_pos(note.filename, note.location[1], note.location[2])
 end
 
-local function update_current_line(bufnr)
-
-end
-
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
   pattern = "*.md",
   callback = function(event)
@@ -285,14 +281,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
     show_links(event.buf)
   end,
 })
-
-
--- vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
---   pattern = "*.md",
---   callback = function(event)
---     update_current_line(event.buf)
---   end,
--- })
 
 vim.keymap.set("n", "<leader>zn", note_search, { desc = "[N]otes Search" })
 vim.keymap.set("n", "<leader>zt", tag_search, { desc = "[T]ags Search" })
