@@ -28,10 +28,10 @@
 
 ## Setup-2 Manual Setup
 
-> ```
-> Flowlauncher
-> Tridactyl
-> ```
+```
+Flowlauncher
+Tridactyl
+```
 
 ## Neovim Only - Linux
 
@@ -55,28 +55,30 @@
 
 [Oryx: The ZSA Keyboard Configurator](https://configure.zsa.io/voyager/layouts/qGely/latest/0)
 
+F19 is used for global keybinds while shift+alt+ctrl is used for per app changes
+
 ```
 - GlazeWm
-  - Alt+HJKL           | Move focus
-  - Alt+Shift+HJKL     | Move focused window
-  - Alt+yuio           | Move focus to screen 1 2 3 4
-  - Alt+Shift+yuio     | Move window to screen 1 2 3 4
-  - Alt+Ctrl+HJKL      | Resize window
-  - Alt+F              | Toggle window to float
-  - Alt+T              | Toggle window to tiling
-  - Alt+M              | Toggle window to maximize
-  - Alt+N              | Toggle window to minimize
-  - Alt+A              | Toggle tiling direction
-  - Alt+Q              | Close window
-  - Alt+R              | Reload glazeWm config
+  - F19+HJKL           | Move focus
+  - F19+Shift+HJKL     | Move focused window
+  - F19+yuio           | Move focus to screen 1 2 3 4
+  - F19+Shift+yuio     | Move window to screen 1 2 3 4
+  - F19+Ctrl+HJKL      | Resize window
+  - F19+F              | Toggle window to float
+  - F19+T              | Toggle window to tiling
+  - F19+M              | Toggle window to maximize
+  - F19+N              | Toggle window to minimize
+  - F19+A              | Toggle tiling direction
+  - F19+Q              | Close window
+  - F19+R              | Reload glazeWm config
 - Powertoys
   - Ctrl+Shift+C       | Screen color picker
 - AutoHotkey
   - global
-    - Alt+Shift+Ctrl+S | focus or open spotify
-    - Alt+Shift+Ctrl+D | focus or open discord
-    - Alt+Shift+Ctrl+Z | focus or open zen browser
-    - Alt+Shift+Ctrl+C | focus or open code editor
+    - F19+S            | focus or open spotify
+    - F19+D            | focus or open discord
+    - F19+Z            | focus or open zen browser
+    - F19+C            | focus or open neo
   - minecraft
     - Ctrl+F           | Reload minecraft
 ```
@@ -123,5 +125,6 @@
 
 ```
 - Neo
-  - Launches neovide with powershell so it has powershell variables
+  - Launches neovide with .$profile for powershell environment variables
+  - Launches from C: drive
 ```
