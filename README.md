@@ -36,19 +36,19 @@ Tridactyl
 ## Neovim Only - Linux
 
 > ```bash
-> cd $XDG_CONFIG_HOME/
+> cd $XDG_CONFIG_HOME
 >
-> rm nvim -f -r
+> rm nvim -rf
 >
-> git clone --filter=blob:none --no-checkout https://github.com/Paperweightt/dotfiles
-> cd dotfiles
+> git clone --filter=blob:none --no-checkout https://github.com/Paperweightt/.dotfiles
+> cd .dotfiles
 > git sparse-checkout init --cone
-> git sparse-checkout set examples/blog
+> git sparse-checkout set nvim
 > git checkout
 >
 > mv nvim ../
-> cd ../
-> rm ./.dotfiles -f -r
+> cd ..
+> rm .dotfiles -rf
 > ```
 
 ## Keybinds
