@@ -1,9 +1,15 @@
 return {
-  dir = '~/projects/transmute.nvim',
+  "paperweightt/transmute.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+  },
   config = function()
-    require('transmute').setup()
-    vim.keymap.set('v', '<leader>tf', require('transmute').transmute_from_to, { desc = '[T]ransmute [F]rom to' })
+    local transmute = require("transmute")
 
-    vim.keymap.set('v', '<leader>tt', require('transmute').transmute_to, { desc = '[T]ransmute [T]o' })
+    transmute.setup()
+
+    vim.keymap.set('v', '<leader>tf', transmute.transmute_from_to, { desc = '[T]ransmute [F]rom to' })
+    vim.keymap.set('v', '<leader>tt', transmute.transmute_to, { desc = '[T]ransmute [T]o' })
   end,
 }
