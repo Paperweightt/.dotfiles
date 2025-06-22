@@ -67,10 +67,10 @@ vim.api.nvim_create_autocmd('VimResized', {
 })
 
 -- Ctrl+S to save the file
-vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
-vim.keymap.set('i', '<C-s>', function()
-  vim.cmd 'w'
-end, { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('i', '<C-s>', function()
+--   vim.cmd 'w'
+-- end, { noremap = true, silent = true })
 
 vim.keymap.set('v', '<leader>r', function()
   -- Get the selected text
@@ -166,13 +166,14 @@ require('lazy').setup {
 
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode',     mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode',        mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
+        { '<leader>z', group = '[Z]ettelkasten' },
         { '<leader>t', group = '[T]erminal' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>h', group = 'Git [H]unk',    mode = { 'n', 'v' } },
       },
     },
   },

@@ -20,6 +20,13 @@
 ---   capabilities = capabilities,
 --- })
 --- ```
+
+vim.filetype.add({
+  extension = {
+    json = "jsonc",
+  },
+})
+
 return {
   cmd = { 'vscode-json-language-server', '--stdio' },
   filetypes = { 'json', 'jsonc' },

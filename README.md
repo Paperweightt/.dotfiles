@@ -126,5 +126,10 @@ F19 is used for global keybinds while shift+alt+ctrl is used for per app changes
 ```
 - Neo
   - Launches neovide with .$profile for powershell environment variables
-  - Launches from C: drive
+  - Launches from C: drive by default
 ```
+
+## Sucessful Conversions
+
+- [Sobrukai404](https://github.com/Sobrukai404) | Zen browser
+- Grimm | Zen Browser, Neovim
