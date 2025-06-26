@@ -1,6 +1,12 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
   // my config
+
+  {
+    "key": "enter",
+    "command": "multiCommand.openFileAndCloseExplorer",
+    "when": "explorerViewletVisible && explorerViewletFocus && !inputFocus"
+  },
   {
     "key": "ctrl+h",
     "command": "workbench.action.focusLeftGroup"

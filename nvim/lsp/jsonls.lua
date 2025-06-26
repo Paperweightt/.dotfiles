@@ -27,6 +27,13 @@ vim.filetype.add({
   },
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.json",
+  callback = function()
+    vim.bo.filetype = "jsonc"
+  end,
+})
+
 return {
   cmd = { 'vscode-json-language-server', '--stdio' },
   filetypes = { 'json', 'jsonc' },

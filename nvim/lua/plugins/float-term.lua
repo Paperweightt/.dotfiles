@@ -26,8 +26,8 @@ vim.api.nvim_create_autocmd('VimResized', {
 
       vim.api.nvim_win_set_config(state.floating.win, {
         relative = 'editor', -- or "win", "cursor" etc, depending what you want
-        row = row, -- new vertical position
-        col = col, -- new horizontal position
+        row = row,           -- new vertical position
+        col = col,           -- new horizontal position
         width = width,
         height = height,
         style = 'minimal', -- No borders or extra UI elements
@@ -36,6 +36,7 @@ vim.api.nvim_create_autocmd('VimResized', {
     end
   end,
 })
+
 
 vim.keymap.set('t', '<C-h>', function()
   local term_buf = state.floating.buf
@@ -106,6 +107,20 @@ local function toggle_terminal()
     vim.api.nvim_win_hide(state.floating.win)
   end
 end
+
+vim.keymap.set('n', '<C-p>', function()
+  vim.cmd 'startinsert'
+  toggle_terminal()
+
+  local term_buf = state.floating.buf
+  local chan_id = vim.b[term_buf].terminal_job_id
+
+  if vim.o.shell == 'pwsh' or vim.o.shell == 'powershell' then
+    vim.fn.chansend(chan_id, { 'Invoke-Expression (Get-History)[-1].CommandLine\r\n' })
+  else
+    vim.fn.chansend(chan_id, { '\x1b[A' })
+  end
+end, { noremap = true, silent = true, desc = 'run most recent shell command' })
 
 -- Map Ctrl-t in normal and terminal modes
 vim.keymap.set('n', '<C-t>', function()

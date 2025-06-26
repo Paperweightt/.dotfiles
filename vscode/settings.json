@@ -1,4 +1,13 @@
 {
+  "multiCommand.commands": [
+    {
+      "command": "multiCommand.openFileAndCloseExplorer",
+      "sequence": [
+        "explorer.openAndPassFocus", // opens file
+        "workbench.action.toggleSidebarVisibility" // hides explorer
+      ]
+    }
+  ],
   // my config
   "editor.cursorSurroundingLines": 12, // acts like 'scrolloff=5'
   "editor.cursorSurroundingLinesStyle": "all",
@@ -48,11 +57,17 @@
   "vim.useSystemClipboard": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["<space>"],
-      "commands": ["vspacecode.space"]
+      "before": [
+        "<space>"
+      ],
+      "commands": [
+        "vspacecode.space"
+      ]
     },
     {
-      "before": [","],
+      "before": [
+        ","
+      ],
       "commands": [
         "vspacecode.space",
         {
@@ -64,11 +79,17 @@
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": ["<space>"],
-      "commands": ["vspacecode.space"]
+      "before": [
+        "<space>"
+      ],
+      "commands": [
+        "vspacecode.space"
+      ]
     },
     {
-      "before": [","],
+      "before": [
+        ","
+      ],
       "commands": [
         "vspacecode.space",
         {
@@ -78,12 +99,20 @@
       ]
     },
     {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
     },
     {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
     }
   ]
 }
