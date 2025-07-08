@@ -1,6 +1,4 @@
-## Dotfiles - Windows 11
-
-## Installation
+## Installation - Windows 11
 
 > ```powershell
 > winget install --id Git.Git -e --source winget
@@ -29,8 +27,8 @@
 ## Setup-2 Manual Setup
 
 ```
-Flowlauncher
-Tridactyl
+Flowlauncher - quick launcher
+Tridactyl - vim keybinds for browsing
 ```
 
 ## Neovim Only - Linux
@@ -109,7 +107,7 @@ F19 is used for global keybinds while shift+alt+ctrl is used for per app changes
 
 ```
 - Missing Info
-  - Download
+  - Download Info
     - Powertoys
   - Configs
     - Flow Launcher
@@ -117,8 +115,6 @@ F19 is used for global keybinds while shift+alt+ctrl is used for per app changes
 - Configure
   - Flow launcher
     - Theme
-- Wants
-  - Dedicated markdown displayer
 ```
 
 ## Custom Tooling
