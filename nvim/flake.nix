@@ -1,5 +1,7 @@
 {
-  description = "neovim flake";
+  description = "Neovim Config";
 
-  outputs = { self }: { };
+  outputs = { self }: {
+    configDir = self + "/.";
+  };
 }
