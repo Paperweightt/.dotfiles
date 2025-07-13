@@ -1,7 +1,9 @@
 vim.lsp.enable {
   'lua_ls',
   'jsonls',
-  'clangd'
+  'clangd',
+  -- 'nil_ls',
+  'gopls'
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
