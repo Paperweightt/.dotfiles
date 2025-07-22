@@ -274,14 +274,14 @@ local function goto_note()
   jump_to_file_and_pos(note.filename, note.location[1], note.location[2])
 end
 
-vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
-  pattern = "*.md",
-  callback = function(event)
-    clear_links(event.buf)
-    show_links(event.buf)
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
+--   pattern = "*.md",
+--   callback = function(event)
+--     clear_links(event.buf)
+--     show_links(event.buf)
+--   end,
+-- })
 
 vim.keymap.set("n", "<leader>zn", note_search, { desc = "[N]otes Search" })
 vim.keymap.set("n", "<leader>zt", tag_search, { desc = "[T]ags Search" })
-vim.keymap.set("n", "gz", goto_note, { desc = "[G]oto [Z]ettelkasten Note" })
+-- vim.keymap.set("n", "gz", goto_note, { desc = "[G]oto [Z]ettelkasten Note" })

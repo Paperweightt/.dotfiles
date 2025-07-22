@@ -1,5 +1,7 @@
 if vim.g.neovide then
   local display_mode = false
+  -- local default_font = 'JetBrainsMono Nerd Font:h11'
+  -- local display_font = 'JetBrainsMono Nerd Font:h15.5'
   local default_font = 'FiraCode Nerd Font Mono:h11'
   local display_font = 'FiraCode Nerd Font Mono:h15.5'
 
@@ -18,7 +20,7 @@ if vim.g.neovide then
       display_mode = true
       vim.o.guifont = display_font
     end
-  end, { desc = '[T]oggle [D]isplay mode' })
+  end, { desc = '[T]oggle [d]isplay mode' })
 
   local function sync_separator_with_background()
     local normal_bg = vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
