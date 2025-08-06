@@ -144,12 +144,12 @@ local function note_search()
         local content = entry.id
         local filename = entry.filename
         local linenum = entry.location[1]
-        local tag = content:match("# %w+")
+        local tag = string.sub(content:match("# .+"), 2)
 
         local displayer = entry_display.create({
           separator = " │ ",
           items = {
-            { width = 20 },       -- tag
+            { width = 40 },       -- tag
             { remaining = true }, -- file and preview
           },
         })
@@ -282,6 +282,6 @@ end
 --   end,
 -- })
 
-vim.keymap.set("n", "<leader>zn", note_search, { desc = "[N]otes Search" })
-vim.keymap.set("n", "<leader>zt", tag_search, { desc = "[T]ags Search" })
+vim.keymap.set("n", "<leader>sz", note_search, { desc = "[S]earch [Z]ettelkasten" })
+-- vim.keymap.set("n", "<leader>zt", tag_search, { desc = "[T]ags Search" })
 -- vim.keymap.set("n", "gz", goto_note, { desc = "[G]oto [Z]ettelkasten Note" })

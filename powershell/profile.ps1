@@ -11,10 +11,10 @@ $env:TODO = Join-Path $HOME "\Notes\Todos"
 $env:NOTES = Join-Path $HOME "\Notes"
 $env:PICTURES = Join-Path $HOME "\Onedrive\Pictures"
 
-function neo
-{
-    & "$HOME\.dotfiles\neo\neo.ps1"
-}
+# function neo
+# {
+#     & "$HOME\.dotfiles\neo\neo.ps1"
+# }
 
 function Admin
 {

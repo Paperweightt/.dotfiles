@@ -12,6 +12,11 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 1
   vim.o.guifont = default_font
 
+  vim.api.nvim_create_user_command("Restart", function()
+    vim.fn.jobstart("neovide")
+    vim.cmd("qa!")
+  end, {})
+
   vim.keymap.set('n', '<leader>td', function()
     if display_mode then
       display_mode = false

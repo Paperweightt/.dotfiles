@@ -83,7 +83,7 @@ return {
             if entry.type == 'file' then
               vim.system({ 'explorer.exe', path }, { detach = true })
             else
-              vim.system({ 'neovide', path }, { detach = true })
+              vim.system({ 'neo', path }, { detach = true })
             end
           end,
         },
