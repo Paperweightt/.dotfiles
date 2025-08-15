@@ -1,4 +1,5 @@
 {
+  // my config
   "multiCommand.commands": [
     {
       "command": "multiCommand.openFileAndCloseExplorer",
@@ -6,9 +7,24 @@
         "explorer.openAndPassFocus", // opens file
         "workbench.action.toggleSidebarVisibility" // hides explorer
       ]
+    },
+    {
+      "command": "multiCommand.openFileOrToggleFolder",
+      "sequence": [
+        "list.select",
+        {
+          "command": "workbench.action.closeSidebar",
+          "when": "editorTextFocus" // This runs only if the selection opened an editor
+        }
+      ]
     }
   ],
-  // my config
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.perEditorGroup": true,
+  "workbench.editor.limit.value": 1,
+
+  "editor.cursorSmoothCaretAnimation": "on", // gliding movement
+
   "editor.cursorSurroundingLines": 12, // acts like 'scrolloff=5'
   "editor.cursorSurroundingLinesStyle": "all",
   "editor.smoothScrolling": true,
@@ -36,8 +52,6 @@
   "output.smartScroll.enabled": false,
   "workbench.iconTheme": "vscode-icons",
   "glassit.alpha": 240,
-  "editor.minimap.enabled": false,
-  "workbench.layoutControl.enabled": false,
   "vsicons.dontShowNewVersionMessage": true,
   "C_Cpp.default.compilerPath": "C:\\msys64\\mingw64\\bin\\g++.exe",
   "editor.unicodeHighlight.allowedCharacters": {
@@ -48,7 +62,7 @@
   "workbench.colorTheme": "Vim Dark Hard",
   "html.autoClosingTags": false,
   "workbench.editor.enablePreview": false,
-  "workbench.editor.showTabs": "single",
+  "workbench.editor.showTabs": "none",
   "zenMode.fullScreen": false,
   "workbench.statusBar.visible": false,
   "security.promptForLocalFileProtocolHandling": false,
@@ -114,5 +128,13 @@
         "editor.action.outdentLines"
       ]
     }
-  ]
+  ],
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "editor.renderWhitespace": "none",
+  "editor.minimap.enabled": false,
+  "editor.renderControlCharacters": false,
+  "workbench.activityBar.location": "hidden",
+  "breadcrumbs.enabled": false
 }

@@ -102,7 +102,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   'tpope/vim-sleuth',
   'numToStr/Comment.nvim',
-
   {
     'folke/which-key.nvim',
     event = 'VimEnter',

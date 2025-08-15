@@ -11,12 +11,12 @@ $env:TODO = Join-Path $HOME "\Notes\Todos"
 $env:NOTES = Join-Path $HOME "\Notes"
 $env:PICTURES = Join-Path $HOME "\Onedrive\Pictures"
 
-# function neo
-# {
-#     & "$HOME\.dotfiles\neo\neo.ps1"
-# }
+function neo
+{
+    & "$HOME\.dotfiles\neo\neo.ps1"
+}
 
-function Admin
+function admin
 {
     if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
     {
@@ -24,6 +24,11 @@ function Admin
             -Verb RunAs
         exit
     }
+}
+
+function killnvim
+{
+    Stop-Process -Name nvim -Force
 }
 
 oh-my-posh init pwsh --config "C:\Users\henry\.dotfiles\powershell\oh-my-posh.omp.json"| Invoke-Expression
