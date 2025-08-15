@@ -12,6 +12,11 @@
     "when": "explorerViewletVisible && explorerViewletFocus && !inputFocus"
   },
   {
+    "key": "tab",
+    "command": "list.select",
+    "when": "explorerViewletVisible && explorerViewletFocus && !inputFocus"
+  },
+  {
     "key": "ctrl+h",
     "command": "workbench.action.focusLeftGroup"
   },

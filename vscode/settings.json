@@ -135,6 +135,6 @@
   "editor.renderWhitespace": "none",
   "editor.minimap.enabled": false,
   "editor.renderControlCharacters": false,
-  "workbench.activityBar.location": "hidden",
-  "breadcrumbs.enabled": false
+  "breadcrumbs.enabled": false,
+  "workbench.activityBar.location": "top"
 }
