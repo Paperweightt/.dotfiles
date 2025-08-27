@@ -3,6 +3,7 @@ if vim.g.neovide then
   -- local default_font = 'JetBrainsMono Nerd Font:h11'
   -- local display_font = 'JetBrainsMono Nerd Font:h15.5'
   local default_font = 'FiraCode Nerd Font Mono:h11'
+  -- local default_font = 'FiraCode Nerd Font Mono:h5'
   local display_font = 'FiraCode Nerd Font Mono:h15.5'
 
   vim.g.neovide_opacity = 0

@@ -2,13 +2,6 @@
   // my config
   "multiCommand.commands": [
     {
-      "command": "multiCommand.openFileAndCloseExplorer",
-      "sequence": [
-        "explorer.openAndPassFocus", // opens file
-        "workbench.action.toggleSidebarVisibility" // hides explorer
-      ]
-    },
-    {
       "command": "multiCommand.openFileOrToggleFolder",
       "sequence": [
         "list.select",
@@ -22,9 +15,8 @@
   "workbench.editor.limit.enabled": true,
   "workbench.editor.limit.perEditorGroup": true,
   "workbench.editor.limit.value": 1,
-
+  "editor.formatOnSave": true,
   "editor.cursorSmoothCaretAnimation": "on", // gliding movement
-
   "editor.cursorSurroundingLines": 12, // acts like 'scrolloff=5'
   "editor.cursorSurroundingLinesStyle": "all",
   "editor.smoothScrolling": true,

@@ -103,6 +103,10 @@ require('lazy').setup {
   'tpope/vim-sleuth',
   'numToStr/Comment.nvim',
   {
+    "SunnyTamang/select-undo.nvim",
+    opts = {},
+  },
+  {
     'folke/which-key.nvim',
     event = 'VimEnter',
     opts = {
@@ -235,7 +239,7 @@ require('lazy').setup {
   {
     'stevearc/conform.nvim',
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       format_on_save = {
         timeout_ms = 500,
         lsp_fallback = true,
@@ -243,6 +247,7 @@ require('lazy').setup {
       formatters_by_ft = {
         rust = { 'rustfmt' },
         json = { 'prettierd' },
+        jsonc = { 'prettierd' },
         yaml = { 'prettierd' },
         markdown = { 'prettierd' },
         lua = { 'stylua' },
