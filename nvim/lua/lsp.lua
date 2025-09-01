@@ -3,8 +3,9 @@ vim.lsp.enable {
   'jsonls',
   'clangd',
   'ts_ls',
-  -- 'nil_ls',
-  'gopls'
+  -- 'nil_ls', -- for nix
+  'gopls',
+  'basedpyright'
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {

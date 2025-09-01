@@ -67,11 +67,6 @@ vim.api.nvim_create_autocmd('VimResized', {
   end,
 })
 
--- vim.api.nvim_create_user_command("Restart", function()
---   vim.fn.jobstart("nvim")
---   vim.cmd("qa!")
--- end, {})
-
 vim.keymap.set('n', 'yp', function()
   local filepath = vim.fn.expand('%:p')
   if filepath == "" then
@@ -103,7 +98,7 @@ require('lazy').setup {
   'tpope/vim-sleuth',
   'numToStr/Comment.nvim',
   {
-    "SunnyTamang/select-undo.nvim",
+    "sunnytamang/select-undo.nvim",
     opts = {},
   },
   {
@@ -255,6 +250,7 @@ require('lazy').setup {
         javascriptreact = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
+        python = { 'black' },
         css = { 'prettierd' },
         html = { 'prettierd' },
       },
@@ -314,7 +310,7 @@ require('lazy').setup {
 
 require 'neovide'
 require 'lsp'
-require 'zettelkasten'
+-- require 'zettelkasten'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
