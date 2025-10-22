@@ -1,3 +1,7 @@
+-- TODO: delete
+package.path = package.path .. ";C:/Users/henry/Projects/tome.nvim/lua/?.lua"
+package.path = package.path .. ";C:/Users/henry/Projects/tome.nvim/lua/?/init.lua"
+
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -29,7 +33,14 @@ return {
       completion = { documentation = { auto_show = false } },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages' },
+        providers = {
+          tome_pages = {
+            name = "tome_pages",
+            module = "tome.autocomplete",
+            score_offset = 5
+          }
+        }
       },
 
       fuzzy = { implementation = 'prefer_rust_with_warning' },
