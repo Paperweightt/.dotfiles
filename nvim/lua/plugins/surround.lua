@@ -15,6 +15,13 @@ return {
         replace = 'sr',        -- Replace surrounding
         update_n_lines = 'sn', -- Update `n_lines`
       },
+      -- post = function(_, action) -- maybe one day
+      --   if action == "add" or action == "delete" or action == "replace" then
+      --     -- Using conform.nvim
+      --     vim.notify("we did a thing")
+      --     require("conform").format({ async = true })
+      --   end
+      -- end
     })
   end
 }

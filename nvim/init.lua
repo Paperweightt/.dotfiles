@@ -98,10 +98,6 @@ require('lazy').setup {
   'tpope/vim-sleuth',
   'numToStr/Comment.nvim',
   {
-    "sunnytamang/select-undo.nvim",
-    opts = {},
-  },
-  {
     'folke/which-key.nvim',
     event = 'VimEnter',
     opts = {

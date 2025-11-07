@@ -1,15 +1,22 @@
 ## path variables
-$env:MOJANG = Join-Path $env:USERPROFILE "AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang"
-$env:PACKS = Join-Path $env:USERPROFILE "\OneDrive\Desktop\packs"
-$env:CODE = "C:\Code"
-$env:DOTF = Join-Path $HOME "\.dotfiles"
-$env:STARTUP = [Environment]::GetFolderPath("Startup")
-$env:PROJECTS = Join-Path $HOME "\Projects"
-$env:DOWNLOADS = Join-Path $HOME "\Downloads"
-$env:HOME = $HOME
-$env:TODO = Join-Path $HOME "\Notes\Todos"
-$env:NOTES = Join-Path $HOME "\Notes"
-$env:PICTURES = Join-Path $HOME "\Onedrive\Pictures"
+$mojang    = Join-Path $HOME "AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang"
+$packs     = Join-Path $HOME "OneDrive\Desktop\packs"
+$dotf      = Join-Path $HOME ".dotfiles"
+$startup   = [Environment]::GetFolderPath("Startup")
+$projects  = Join-Path $HOME "Projects"
+$downloads = Join-Path $HOME "Downloads"
+$notes     = Join-Path $HOME "Notes"
+$pictures  = Join-Path $HOME "OneDrive\Pictures"
+
+## for neovim and other tools
+$env:MOJANG    = $mojang
+$env:PACKS     = $packs
+$env:DOTF      = $dotf
+$env:STARTUP   = $startup
+$env:PROJECTS  = $projects
+$env:DOWNLOADS = $downloads
+$env:NOTES     = $notes
+$env:PICTURES  = $pictures
 
 function neo
 {
@@ -20,7 +27,7 @@ function admin
 {
     if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
     {
-        Start-Process -FilePath "pwsh" -ArgumentList "-NoProfile", "-NoExit" `
+        Start-Process -FilePath "pwsh" -ArgumentList "-NoExit" `
             -Verb RunAs
         exit
     }
