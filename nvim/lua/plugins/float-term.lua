@@ -1,6 +1,6 @@
 local uname = vim.loop.os_uname().sysname
 
-if uname == "Windows_NT"
+if uname == "Windows_NT" then
   vim.o.shell = 'pwsh'
   vim.o.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command'
   vim.o.shellquote = '"'
