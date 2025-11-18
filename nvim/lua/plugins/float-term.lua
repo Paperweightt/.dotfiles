@@ -1,10 +1,16 @@
-vim.o.shell = 'pwsh'
-vim.o.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command'
-vim.o.shellquote = '"'
-vim.o.shellxquote = ''
-vim.o.shellpipe = '| Out-File -Encoding UTF8 -Append'
-vim.o.shellredir = '| Out-File -Encoding UTF8'
+local uname = vim.loop.os_uname().sysname
 
+if uname == "Windows_NT"
+  vim.o.shell = 'pwsh'
+  vim.o.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command'
+  vim.o.shellquote = '"'
+  vim.o.shellxquote = ''
+  vim.o.shellpipe = '| Out-File -Encoding UTF8 -Append'
+  vim.o.shellredir = '| Out-File -Encoding UTF8'
+else
+  vim.opt.shell = '/bin/bash'
+end
+  
 local state = {
   floating = {
     buf = -1,
