@@ -1,8 +1,19 @@
 return {
-  "jiaoshijie/undotree",
-  dependencies = "nvim-lua/plenary.nvim",
-  config = true,
-  keys = { -- load the plugin only when using it's keybinding:
-    { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
-  },
+  {
+    "XXiaoA/atone.nvim",
+    cmd = "Atone",
+    opts = {},
+
+    config = function()
+      require("atone").setup({
+        auto_attach = {
+          enabled = false
+        }
+      })
+
+      local opts = { noremap = true, silent = true, desc = "[U]ndo tree toggle" }
+      vim.keymap.set("n", "<Leader>u", ":Atone toggle <CR>", opts)
+    end
+
+  }
 }

@@ -4,6 +4,16 @@ package.path = package.path .. ";C:/Users/henry/Projects/tome.nvim/lua/?/init.lu
 
 return {
   {
+    "danymat/neogen",
+    -- Uncomment next line if you want to follow only stable versions
+    -- version = "*"
+    config = function()
+      require('neogen').setup({ snippet_engine = "luasnip" })
+      local opts = { noremap = true, silent = true }
+      vim.keymap.set("n", "<Leader>f", require('neogen').generate, opts)
+    end
+  },
+  {
     "L3MON4D3/LuaSnip",
     dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
@@ -33,7 +43,7 @@ return {
       completion = { documentation = { auto_show = false } },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages', 'signature', 'calc' },
         providers = {
           tome_pages = {
             name = "tome_pages",
