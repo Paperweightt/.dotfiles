@@ -7,6 +7,21 @@ return {
 
     if vim.g.neovide then
       transparent = false
+
+      local function sync_separator_with_background()
+        local normal_bg = vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
+        vim.api.nvim_set_hl(0, 'WinSeparator', {
+          fg = '#83a598',
+          bg = normal_bg and string.format('#%06x', normal_bg) or 'NONE',
+        })
+      end
+
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        pattern = '*',
+        callback = sync_separator_with_background,
+      })
+
+      sync_separator_with_background()
     end
 
     require('gruvbox').setup {
@@ -26,7 +41,7 @@ return {
       invert_signs = false,
       invert_tabline = false,
       invert_intend_guides = false,
-      inverse = true, -- invert background for search, diffs, statuslines and errors
+      inverse = true,    -- invert background for search, diffs, statuslines and errors
       contrast = 'soft', -- can be "hard", "soft" or empty string
       palette_overrides = {
         -- bg = '#1A1A1A',

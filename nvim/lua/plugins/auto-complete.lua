@@ -41,9 +41,9 @@ return {
       },
 
       completion = { documentation = { auto_show = false } },
-
+      signature = { enabled = true },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages', 'signature', 'calc' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages' },
         providers = {
           tome_pages = {
             name = "tome_pages",

@@ -27,19 +27,4 @@ if vim.g.neovide then
       vim.o.guifont = display_font
     end
   end, { desc = '[T]oggle [d]isplay mode' })
-
-  local function sync_separator_with_background()
-    local normal_bg = vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
-    vim.api.nvim_set_hl(0, 'WinSeparator', {
-      fg = '#83a598',
-      bg = normal_bg and string.format('#%06x', normal_bg) or 'NONE',
-    })
-  end
-
-  vim.api.nvim_create_autocmd('ColorScheme', {
-    pattern = '*',
-    callback = sync_separator_with_background,
-  })
-
-  sync_separator_with_background()
 end

@@ -39,7 +39,6 @@ vim.opt.scrolloff = 12
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.laststatus = 0
 
 vim.opt.fillchars = 'eob: '
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
