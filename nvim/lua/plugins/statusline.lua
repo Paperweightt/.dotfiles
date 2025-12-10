@@ -1,32 +1,3 @@
---[[
-# requirements
-
-filename
-saved or not
-lsp status
-branch
-lsp diagostics
-
-# usless stuff
-current mode
-
-]]
-
-local function lsp_progress()
-  local messages = vim.lsp.util.get_progress_messages()
-  if #messages == 0 then
-    return
-  end
-  local status = {}
-  for _, msg in pairs(messages) do
-    table.insert(status, (msg.percentage or 0) .. "%% " .. (msg.title or ""))
-  end
-  local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-  local ms = vim.uv.hrtime() / 1000000
-  local frame = math.floor(ms / 120) % #spinners
-  return table.concat(status, " | ") .. " " .. spinners[frame + 1]
-end
-
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -46,10 +17,10 @@ return {
         always_show_tabline = true,
         globalstatus = false,
         refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
-          refresh_time = 16, -- ~60fps
+          statusline = 2000,
+          tabline = 2000,
+          winbar = 2000,
+          refresh_time = 8, -- ~60fps
           events = {
             'WinEnter',
             'BufEnter',
@@ -86,5 +57,4 @@ return {
       extensions = {}
     }
   end
-
 }
