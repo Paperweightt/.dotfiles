@@ -5,8 +5,7 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     exit
 }
 
-$settings_path = "$home/Appdata/Roaming/Code/User/settings.json"
-$keybindings_path = "$home/AppData/Roaming/Code/User/keybindings.json"
+$settings_path = "$home/Appdata/Roaming/Zed/settings.json"
 
 if (Test-Path $settings_path) {
     Remove-Item -Path $settings_path
@@ -14,12 +13,15 @@ if (Test-Path $settings_path) {
 
 New-Item -ItemType SymbolicLink `
     -Path $settings_path `
-    -Target "$home/.dotfiles/vscode/settings.json"
+    -Target "$home/.dotfiles/zed/settings.json"
 
-if (Test-Path $keybindings_path) {
-    Remove-Item -Path $keybindings_path
+$keymap_path = "$home/Appdata/Roaming/Zed/keymap.json"
+
+if (Test-Path $keymap_path) {
+    Remove-Item -Path $keymap_path
 }
 
 New-Item -ItemType SymbolicLink `
-    -Path $keybindings_path `
-    -Target "$home/.dotfiles/vscode/keybindings.json"
+    -Path $keymap_path `
+    -Target "$home/.dotfiles/zed/keymap.json"
+
