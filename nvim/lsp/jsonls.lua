@@ -24,8 +24,10 @@
 vim.filetype.add({
   extension = {
     json = "jsonc",
+    material = "jsonc"
   },
 })
+
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.json",

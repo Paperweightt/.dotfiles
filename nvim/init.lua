@@ -51,259 +51,261 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.keymap.set('n', '<leader>rl', function()
-    local ok, err = pcall(dofile, vim.fn.expand '%')
-    if not ok then
-        vim.notify('Lua Error:\n' .. err, vim.log.levels.ERROR)
-    else
-        vim.notify('Lua file executed successfully', vim.log.levels.INFO)
-    end
+  local ok, err = pcall(dofile, vim.fn.expand '%')
+  if not ok then
+    vim.notify('Lua Error:\n' .. err, vim.log.levels.ERROR)
+  else
+    vim.notify('Lua file executed successfully', vim.log.levels.INFO)
+  end
 end, { desc = 'Run current Lua file with error reporting' })
 
 vim.api.nvim_create_autocmd('VimResized', {
-    desc = 'resize splits',
-    callback = function()
-        vim.cmd 'wincmd ='
-    end,
+  desc = 'resize splits',
+  callback = function()
+    vim.cmd 'wincmd ='
+  end,
 })
 
 vim.keymap.set('n', 'yp', function()
-    local filepath = vim.fn.expand('%:p')
-    if filepath == "" then
-        vim.notify("No file path to yank", vim.log.levels.WARN)
-        return
-    end
-    vim.fn.setreg('+', filepath)
-    vim.notify("Yanked: " .. filepath)
+  local filepath = vim.fn.expand('%:p')
+  if filepath == "" then
+    vim.notify("No file path to yank", vim.log.levels.WARN)
+    return
+  end
+  vim.fn.setreg('+', filepath)
+  vim.notify("Yanked: " .. filepath)
 end, { noremap = true, silent = true, desc = '[y]ank [p]ath' })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
-    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
-    local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-    vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-    'tpope/vim-sleuth',
-    'numToStr/Comment.nvim',
-    {
-        'folke/which-key.nvim',
-        event = 'VimEnter',
-        opts = {
-            icons = {
-                mappings = vim.g.have_nerd_font,
-                keys = vim.g.have_nerd_font and {} or {
-                    Up = '<Up> ',
-                    Down = '<Down> ',
-                    Left = '<Left> ',
-                    Right = '<Right> ',
-                    C = '<C-…> ',
-                    M = '<M-…> ',
-                    D = '<D-…> ',
-                    S = '<S-…> ',
-                    CR = '<CR> ',
-                    Esc = '<Esc> ',
-                    ScrollWheelDown = '<ScrollWheelDown> ',
-                    ScrollWheelUp = '<ScrollWheelUp> ',
-                    NL = '<NL> ',
-                    BS = '<BS> ',
-                    Space = '<Space> ',
-                    Tab = '<Tab> ',
-                    F1 = '<F1>',
-                    F2 = '<F2>',
-                    F3 = '<F3>',
-                    F4 = '<F4>',
-                    F5 = '<F5>',
-                    F6 = '<F6>',
-                    F7 = '<F7>',
-                    F8 = '<F8>',
-                    F9 = '<F9>',
-                    F10 = '<F10>',
-                    F11 = '<F11>',
-                    F12 = '<F12>',
-                },
-            },
-
-            -- Document existing key chains
-            spec = {
-                { '<leader>c', group = '[C]ode',        mode = { 'n', 'x' } },
-                { '<leader>d', group = '[D]ocument' },
-                { '<leader>r', group = '[R]ename' },
-                { '<leader>s', group = '[S]earch' },
-                { '<leader>w', group = '[W]orkspace' },
-                { '<leader>z', group = '[Z]ettelkasten' },
-                { '<leader>t', group = '[T]oggle' },
-                { '<leader>h', group = 'Git [H]unk',    mode = { 'n', 'v' } },
-            },
+  'tpope/vim-sleuth',
+  'numToStr/Comment.nvim',
+  {
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    opts = {
+      icons = {
+        mappings = vim.g.have_nerd_font,
+        keys = vim.g.have_nerd_font and {} or {
+          Up = '<Up> ',
+          Down = '<Down> ',
+          Left = '<Left> ',
+          Right = '<Right> ',
+          C = '<C-…> ',
+          M = '<M-…> ',
+          D = '<D-…> ',
+          S = '<S-…> ',
+          CR = '<CR> ',
+          Esc = '<Esc> ',
+          ScrollWheelDown = '<ScrollWheelDown> ',
+          ScrollWheelUp = '<ScrollWheelUp> ',
+          NL = '<NL> ',
+          BS = '<BS> ',
+          Space = '<Space> ',
+          Tab = '<Tab> ',
+          F1 = '<F1>',
+          F2 = '<F2>',
+          F3 = '<F3>',
+          F4 = '<F4>',
+          F5 = '<F5>',
+          F6 = '<F6>',
+          F7 = '<F7>',
+          F8 = '<F8>',
+          F9 = '<F9>',
+          F10 = '<F10>',
+          F11 = '<F11>',
+          F12 = '<F12>',
         },
+      },
+
+      -- Document existing key chains
+      spec = {
+        { '<leader>c', group = '[C]ode',        mode = { 'n', 'x' } },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>z', group = '[Z]ettelkasten' },
+        { '<leader>t', group = '[T]oggle' },
+        { '<leader>g', group = '[G]it',         mode = { 'n', 'v' } },
+      },
     },
-    {
-        'nvim-telescope/telescope.nvim',
-        event = 'VimEnter',
-        branch = '0.1.x',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make',
-                cond = function()
-                    return vim.fn.executable 'make' == 1
-                end,
-            },
-            { 'nvim-telescope/telescope-ui-select.nvim' },
-            {
-                'nvim-tree/nvim-web-devicons',
-                enabled = vim.g.have_nerd_font
-            },
-        },
-        config = function()
-            require('telescope').setup {
-                defaults = {
-                    mappings = {
-                        i = {
-                            ['<C-d>'] = 'delete_buffer', -- delete in insert mode
-                        },
-                        n = {
-                            ['<C-d>'] = 'delete_buffer', -- delete in normal mode
-                        },
-                    },
-                },
-                extensions = {
-                    ['ui-select'] = {
-                        require('telescope.themes').get_dropdown(),
-                    },
-                },
-            }
-
-            -- Enable telescope extensions, if they are installed
-            pcall(require('telescope').load_extension, 'fzf')
-            pcall(require('telescope').load_extension, 'ui-select')
-
-            -- See `:help telescope.builtin`
-            local builtin = require 'telescope.builtin'
-            vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-            vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-            vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-            vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-            vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-            vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-            vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-            vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-            vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files' })
-            vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-
-            -- Slightly advanced example of overriding default behavior and theme
-            vim.keymap.set('n', '<leader>/', function()
-                -- You can pass additional configuration to telescope to change theme, layout, etc.
-                builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-                    winblend = 10,
-                    previewer = false,
-                })
-            end, { desc = '[/] Fuzzily search in current buffer' })
-
-            -- Also possible to pass additional configuration options.
-            --  See `:help telescope.builtin.live_grep()` for information about particular keys
-            vim.keymap.set('n', '<leader>s/', function()
-                builtin.live_grep {
-                    grep_open_files = true,
-                    prompt_title = 'Live Grep in Open Files',
-                }
-            end, { desc = '[S]earch [/] in Open Files' })
-
-            -- Shortcut for searching your neovim configuration files
-            vim.keymap.set('n', '<leader>sn', function()
-                builtin.find_files { cwd = 'C:\\Users\\henry\\.dotfiles\\nvim' }
-            end, { desc = '[S]earch [N]eovim files' })
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    event = 'VimEnter',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
         end,
+      },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
+      {
+        'nvim-tree/nvim-web-devicons',
+        enabled = vim.g.have_nerd_font
+      },
     },
-    {
-        'stevearc/conform.nvim',
-        opts = {
-            notify_on_error = true,
-            format_on_save = {
-                timeout_ms = 2000,
-                lsp_fallback = true,
-            },
-            formatters_by_ft = {
-                rust = { 'rustfmt' },
-                json = { 'prettierd' },
-                jsonc = { 'prettierd' },
-                yaml = { 'prettierd' },
-                markdown = { 'prettierd' },
-                lua = { 'stylua' },
-                javascript = { 'prettierd' },
-                javascriptreact = { 'prettierd' },
-                typescript = { 'prettierd' },
-                typescriptreact = { 'prettierd' },
-                python = { 'black' },
-                css = { 'prettierd' },
-                html = { 'prettierd' },
-            },
-        },
-    },
-    { 'folke/todo-comments.nvim',
-        event = 'VimEnter',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        opts = { signs = false }
-    },
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        config = function()
-            ---@diagnostic disable-next-line: missing-fields
-            require('nvim-treesitter.configs').setup {
+    config = function()
+      local actions = require('telescope.actions')
 
-                ensure_installed = {
-                    'bash',
-                    'rust',
-                    'c',
-                    'html',
-                    'css',
-                    'lua',
-                    'powershell',
-                    'markdown_inline',
-                    'markdown',
-                    'jsdoc',
-                    'javascript',
-                    'gitignore',
-                    'yaml',
-                },
-                auto_install = true,
-                highlight = {
-                    enable = true,
-                },
-                indent = { enable = true },
-            }
-        end,
-    },
-    { import = 'plugins' },
-    ui = {
-        icons = vim.g.have_nerd_font and {} or {
-            cmd = '⌘',
-            config = '🛠',
-            event = '📅',
-            ft = '📂',
-            init = '⚙',
-            keys = '🗝',
-            plugin = '🔌',
-            runtime = '💻',
-            require = '🌙',
-            source = '📄',
-            start = '🚀',
-            task = '📌',
-            lazy = '💤',
+      require('telescope').setup {
+        defaults = {
+          mappings = {
+            i = {
+              ['<C-d>'] = actions.delete_buffer, -- delete in insert mode
+            },
+            n = {
+              ['<C-d>'] = actions.delete_buffer, -- delete in normal mode
+            },
+          },
         },
+        extensions = {
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown(),
+          },
+        },
+      }
+
+      -- Enable telescope extensions, if they are installed
+      pcall(require('telescope').load_extension, 'fzf')
+      pcall(require('telescope').load_extension, 'ui-select')
+
+      -- See `:help telescope.builtin`
+      local builtin = require 'telescope.builtin'
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files' })
+      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+      -- Slightly advanced example of overriding default behavior and theme
+      vim.keymap.set('n', '<leader>/', function()
+        -- You can pass additional configuration to telescope to change theme, layout, etc.
+        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        })
+      end, { desc = '[/] Fuzzily search in current buffer' })
+
+      -- Also possible to pass additional configuration options.
+      --  See `:help telescope.builtin.live_grep()` for information about particular keys
+      vim.keymap.set('n', '<leader>s/', function()
+        builtin.live_grep {
+          grep_open_files = true,
+          prompt_title = 'Live Grep in Open Files',
+        }
+      end, { desc = '[S]earch [/] in Open Files' })
+
+      -- Shortcut for searching your neovim configuration files
+      vim.keymap.set('n', '<leader>sn', function()
+        builtin.find_files { cwd = 'C:\\Users\\henry\\.dotfiles\\nvim' }
+      end, { desc = '[S]earch [N]eovim files' })
+    end,
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      notify_on_error = true,
+      format_on_save = {
+        timeout_ms = 2000,
+        lsp_fallback = true,
+      },
+      formatters_by_ft = {
+        rust = { 'rustfmt' },
+        json = { 'prettierd' },
+        jsonc = { 'prettierd' },
+        yaml = { 'prettierd' },
+        markdown = { 'prettierd' },
+        lua = { 'stylua' },
+        javascript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
+        python = { 'black' },
+        css = { 'prettierd' },
+        html = { 'prettierd' },
+      },
     },
+  },
+  { 'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false }
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('nvim-treesitter.configs').setup {
+
+        ensure_installed = {
+          'bash',
+          'rust',
+          'c',
+          'html',
+          'css',
+          'lua',
+          'powershell',
+          'markdown_inline',
+          'markdown',
+          'jsdoc',
+          'javascript',
+          'gitignore',
+          'yaml',
+        },
+        auto_install = true,
+        highlight = {
+          enable = true,
+        },
+        indent = { enable = true },
+      }
+    end,
+  },
+  { import = 'plugins' },
+  ui = {
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤',
+    },
+  },
 }
 
 require 'neovide'

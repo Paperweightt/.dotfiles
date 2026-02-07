@@ -89,7 +89,7 @@ return {
           callback = function()
             local oil = require 'oil'
             local dir = oil.get_current_dir()
-            os.execute('start explorer.exe ' .. dir)
+            os.execute('start FPilot.exe ' .. dir)
           end,
         },
         ['<C-s>'] = false,
