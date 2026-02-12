@@ -1,5 +1,6 @@
 if vim.g.neovide then
   local display_mode = false
+  local transparent = true
   -- local default_font = 'JetBrainsMono Nerd Font:h11'
   -- local display_font = 'JetBrainsMono Nerd Font:h15.5'
   local default_font = 'FiraCode Nerd Font Mono:h11'
@@ -25,6 +26,16 @@ if vim.g.neovide then
     else
       display_mode = true
       vim.o.guifont = display_font
+    end
+  end, { desc = '[T]oggle [d]isplay mode' })
+
+  vim.keymap.set('n', '<leader>tt', function()
+    if transparent then
+      transparent = false
+      vim.g.neovide_transparency = 1.00
+    else
+      transparent = true
+      vim.g.neovide_transparency = 0.80
     end
   end, { desc = '[T]oggle [d]isplay mode' })
 end
