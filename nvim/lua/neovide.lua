@@ -27,7 +27,7 @@ if vim.g.neovide then
       display_mode = true
       vim.o.guifont = display_font
     end
-  end, { desc = '[T]oggle [d]isplay mode' })
+  end, { desc = '[T]oggle [D]isplay mode' })
 
   vim.keymap.set('n', '<leader>tt', function()
     if transparent then
@@ -37,5 +37,5 @@ if vim.g.neovide then
       transparent = true
       vim.g.neovide_transparency = 0.80
     end
-  end, { desc = '[T]oggle [d]isplay mode' })
+  end, { desc = '[T]oggle [T]ransparency mode' })
 end

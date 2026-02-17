@@ -4,6 +4,7 @@ vim.lsp.enable {
   'clangd',
   'ts_ls',
   -- 'nil_ls', -- for nix
+  "bedrock_ls",
   'gopls',
   'basedpyright'
 }
