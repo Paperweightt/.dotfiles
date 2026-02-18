@@ -17,10 +17,11 @@ vim.filetype.add({
     mcattributes = "bc-minecraft-project",  -- untested
     molang = "bc-minecraft-molang",         -- untested
     mcignore = "bc-minecraft-project",      -- untested
-    mcdefinitions = "bc-minecraft-project", --untested
+    mcdefinitions = "bc-minecraft-project", -- untested
   },
 })
 
+---@type vim.lsp.Config
 return {
   name = "bedrock_ls",
   cmd = {
@@ -29,12 +30,13 @@ return {
     "--stdio",
   },
   filetypes = {
-    "bc-minecraft-language",
     "bc-mcfunction",
-    "bc-minecraft-project",
+    "bc-minecraft-language",
     "bc-minecraft-molang",
     "bc-minecraft-project",
     "bc-minecraft-project",
+    "bc-minecraft-project",
   },
-  root_markers = { "manifest.json", ".git" }
+  --prioritize .git so that project can include both rp and bp then fallback to manifest.json
+  root_dir = vim.fs.root(0, { { ".git" }, "manifest.json" })
 }

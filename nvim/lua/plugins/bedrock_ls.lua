@@ -40,12 +40,15 @@ vim.api.nvim_create_user_command("InspectLS", function()
   end
 end, {})
 
+local function find_root()
+  local root = vim.fs.root(0, { { ".git" }, "manifest.json" })
+
+  return root
+end
+
 vim.api.nvim_create_user_command("InspectFRD", function()
   print("filetype:", vim.bo.filetype)
-  print("root:", vim.fs.root(0, {
-    "behavior_packs",
-    "resource_packs",
-  }))
+  print("root:", find_root())
   print("diagnostics:", vim.inspect(vim.diagnostic.get(0)))
 end, {})
 
