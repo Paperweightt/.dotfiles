@@ -12,10 +12,12 @@
 
 vim.filetype.add({
   extension = {
-    lang = "bc-minecraft-language",     -- works perfectly
-    mcfunction = "bc-mcfunction",       -- has issues with blink.cmp
-    mcmeta = "bc-minecraft-other",      -- unsure
-    mcproject = "bc-minecraft-project", -- unsure
+    lang = "bc-minecraft-language",         -- works perfectly
+    mcfunction = "bc-mcfunction",           -- has issues with blink.cmp
+    mcattributes = "bc-minecraft-project",  -- untested
+    molang = "bc-minecraft-molang",         -- untested
+    mcignore = "bc-minecraft-project",      -- untested
+    mcdefinitions = "bc-minecraft-project", --untested
   },
 })
 
@@ -29,7 +31,9 @@ return {
   filetypes = {
     "bc-minecraft-language",
     "bc-mcfunction",
-    "bc-minecraft-other",
+    "bc-minecraft-project",
+    "bc-minecraft-molang",
+    "bc-minecraft-project",
     "bc-minecraft-project",
   },
   root_markers = { "manifest.json", ".git" }

@@ -20,6 +20,7 @@
 ---   capabilities = capabilities,
 --- })
 --- ```
+---
 
 vim.filetype.add({
   extension = {
@@ -39,6 +40,9 @@ return {
   settings = {
     json = {
       validate = { enable = true },
+      --- bedrock_ls
+      ---schemas are provided from
+      --- https://github.com/Blockception/Minecraft-bedrock-json-schemas/blob/main/docs/guide/ide_setup.md#neovim-with-lsp
       schemas = {
         -- General schemas
         {

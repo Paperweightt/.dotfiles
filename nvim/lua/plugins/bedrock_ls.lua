@@ -16,24 +16,14 @@ local function start_bedrock_lsp()
   })
 end
 
--- implementationProvider = {
---   documentSelector = {
---     { language = "jsonc" },
---     { language = "json" },
---     { language = "bc-mcfunction" },
---     { language = "bc-minecraft-language" }, material, geometry, variable, ect
---     { language = "bc-minecraft-molang" },material, geometry, variable, ect
---     { language = "bc-minecraft-other" },
---     { language = "bc-minecraft-project" }
---   }
--- }
-
 vim.filetype.add({
   extension = {
     lang = "bc-minecraft-language",
     mcfunction = "bc-mcfunction",
-    mcmeta = "bc-minecraft-other",      -- assumed
-    mcproject = "bc-minecraft-project", -- assumed
+    mcattributes = "bc-minecraft-project",
+    molang = "bc-minecraft-molang",
+    mcignore = "bc-minecraft-project",
+    mcdefinitions = "bc-minecraft-project",
   },
 })
 
