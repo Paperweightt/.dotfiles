@@ -28,6 +28,7 @@ vim.filetype.add({
   },
 })
 
+---@type vim.lsp.Config
 return {
   cmd = { 'vscode-json-language-server', '--stdio' },
   filetypes = { 'json', 'jsonc' },
@@ -37,6 +38,7 @@ return {
   root_markers = { '.git' },
   settings = {
     json = {
+      validate = { enable = true },
       schemas = {
         -- General schemas
         {
