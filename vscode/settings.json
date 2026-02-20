@@ -128,5 +128,8 @@
   "editor.minimap.enabled": false,
   "editor.renderControlCharacters": false,
   "breadcrumbs.enabled": false,
-  "workbench.activityBar.location": "top"
+  "workbench.activityBar.location": "top",
+  "settingsSync.ignoredExtensions": [
+    "mojang-studios.minecraft-debugger"
+  ]
 }
