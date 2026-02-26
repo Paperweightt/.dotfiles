@@ -441,7 +441,7 @@ return {
   settings = {
     json = {
       validate = { enable = true },
-      schemas
+      schemas = schemas
     }
   }
 }

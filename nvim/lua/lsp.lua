@@ -3,8 +3,9 @@ vim.lsp.enable {
   'jsonls',
   'clangd',
   'ts_ls',
+  'eslint',
   -- 'nil_ls', -- for nix
-  "bedrock_ls",
+  'bedrock_ls',
   'gopls',
   'basedpyright'
 }
@@ -37,8 +38,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gr', builtin.lsp_references, '[G]oto [R]eferences')
     map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
     map('<leader>D', builtin.lsp_type_definitions, '[D]efinition')
-    map('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
-    map('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+    map('<leader>sd', builtin.lsp_document_symbols, '[S]earch [D]ocument symbols')
+    map('<leader>sW', builtin.lsp_dynamic_workspace_symbols, '[S]earch [W]orkspace symbols')
     map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')

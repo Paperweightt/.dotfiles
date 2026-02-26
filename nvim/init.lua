@@ -22,6 +22,9 @@ vim.opt.cursorline = true
 vim.opt.hlsearch = true
 vim.opt.swapfile = false
 
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+
 -- fold
 vim.opt.foldenable = false
 vim.opt.foldmethod = 'manual'
@@ -139,7 +142,7 @@ require('lazy').setup {
       -- Document existing key chains
       spec = {
         { '<leader>c', group = '[C]ode',        mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
+        { '<leader>d', group = '[D]ap' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
