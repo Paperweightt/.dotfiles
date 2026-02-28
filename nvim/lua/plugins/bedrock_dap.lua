@@ -1,4 +1,49 @@
+local function trim(s)
+  if s:match("\n$") then
+    s = s:sub(1, -2)
+
+    if s:match("\n\r$") then
+      s = s:sub(1, -3)
+    end
+  end
+  return s
+end
+
 return {
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+  },
+  {
+    "liadOz/nvim-dap-repl-highlights",
+    config = function()
+      require('nvim-dap-repl-highlights').setup()
+      ---@diagnostic disable-next-line: missing-fields
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = {
+          'dap_repl',
+          'bash',
+          'rust',
+          'c',
+          'html',
+          'css',
+          'lua',
+          'powershell',
+          'markdown_inline',
+          'markdown',
+          'jsdoc',
+          'javascript',
+          'gitignore',
+          'yaml',
+        },
+        auto_install = true,
+        highlight = {
+          enable = true,
+        },
+        indent = { enable = true },
+      }
+    end
+  },
   {
     "igorlfs/nvim-dap-view",
     ---@module 'dap-view'
@@ -23,7 +68,7 @@ return {
 
       dap.listeners.before['event_output']['mc_dap'] = function(_, body)
         if body.category == "stdout" then
-          vim.notify(body.output:sub(1, -3))
+          vim.notify(trim(body.output))
         end
       end
 
