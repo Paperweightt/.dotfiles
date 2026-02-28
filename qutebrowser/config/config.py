@@ -190,9 +190,11 @@ config.set("colors.webpage.darkmode.enabled", False, "file://*")
 
 # font
 
+config.set("fonts.default_family", ["Fira Code"])
+
 # keybinds
 
-config.set("fonts.default_family", ["Fira Code"])
+config.unbind("d", mode="normal")
 
 # gruvbox dark hard qutebrowser theme by Florian Bruhin <me@the-compiler.org>
 #
