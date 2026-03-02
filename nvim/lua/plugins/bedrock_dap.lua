@@ -57,20 +57,46 @@ return {
     "mfussenegger/nvim-dap",
     config = function()
       local dap = require('dap')
+      local repl = require('dap.repl')
 
       vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
 
-      dap.adapters['minecraft-js'] = {
-        type = "executable",
-        command = "node",
-        args = { "C:/Users/henry/Projects/minecraft-debugger/dist/adapter.js" },
-      }
+      repl.commands = vim.tbl_extend('force', repl.commands, {
+        custom_commands = {
+          ['.reload'] = function()
+            local session = assert(require("dap").session(), "has active session")
+            session:request("sendMinecraftCommand", { command = "reload" })
+          end,
+          ['.run'] = function(text)
+            local session = assert(require("dap").session(), "has active session")
+            session:request("sendMinecraftCommand", { command = text })
+          end,
+        },
+      })
+
+      dap.adapters['minecraft-js'] = function(callback)
+        callback({
+          type = "executable",
+          command = "node",
+          args = { "C:/Users/henry/Projects/minecraft-debugger/dist/adapter.js" },
+          options = { cwd = vim.fn.getcwd() },
+        })
+      end
 
       dap.listeners.before['event_output']['mc_dap'] = function(_, body)
-        if body.category == "stdout" then
-          vim.notify(trim(body.output))
+        if body.output:match("\n$") then
+          body.output = body.output:sub(1, -2)
+        end
+
+        if body.category == "stderr" then
+          vim.notify(body.output, vim.log.levels.ERROR)
         end
       end
+
+      vim.keymap.set('n', '<leader>mr', function()
+        local session = assert(require("dap").session(), "has active session")
+        session:request("sendMinecraftCommand", { command = "reload" })
+      end, { desc = "[D]ap [C]ontinue" })
 
       vim.keymap.set('n', '<leader>dc', dap.continue, { desc = "[D]ap [C]ontinue" })
       vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = "[D]ap toggle [B]reakpoint" })
