@@ -1,14 +1,3 @@
-local function trim(s)
-  if s:match("\n$") then
-    s = s:sub(1, -2)
-
-    if s:match("\n\r$") then
-      s = s:sub(1, -3)
-    end
-  end
-  return s
-end
-
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -96,7 +85,7 @@ return {
       vim.keymap.set('n', '<leader>mr', function()
         local session = assert(require("dap").session(), "has active session")
         session:request("sendMinecraftCommand", { command = "reload" })
-      end, { desc = "[D]ap [C]ontinue" })
+      end, { desc = "[M]inecraft [R]eload" })
 
       vim.keymap.set('n', '<leader>dc', dap.continue, { desc = "[D]ap [C]ontinue" })
       vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = "[D]ap toggle [B]reakpoint" })

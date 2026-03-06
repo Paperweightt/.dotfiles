@@ -81,7 +81,7 @@ F19 is used for global keybinds while shift+alt+ctrl is used for per app changes
     - Ctrl+F           | Reload minecraft
 ```
 
-## Alternatives
+## My Picks & Alternatives
 
 ```
 - Neovim - Code editor
@@ -99,8 +99,9 @@ F19 is used for global keybinds while shift+alt+ctrl is used for per app changes
 - Tridactyl - Browser vim keybinds
   - Vimium
   - Vimium C
-- Zen - Browser
+- Qutebrowser - Browser
   - Brave
+  - Zen
 ```
 
 ## My Todo List
