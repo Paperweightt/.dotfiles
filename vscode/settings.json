@@ -132,5 +132,6 @@
   "settingsSync.ignoredExtensions": [
     "mojang-studios.minecraft-debugger"
   ],
-  "debug.onTaskErrors": "debugAnyway"
+  "debug.onTaskErrors": "debugAnyway",
+  "chat.viewSessions.enabled": false
 }

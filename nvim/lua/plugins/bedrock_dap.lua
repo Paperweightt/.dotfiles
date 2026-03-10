@@ -39,7 +39,7 @@ return {
     ---@type dapview.Config
     opts = {},
     config = function()
-      vim.keymap.set('n', '<leader>dr', "<cmd>DapViewOpen<CR>", { desc = "[D]ap toggle [R]epl" })
+      vim.keymap.set('n', '<leader>dr', "<cmd>DapViewOpen<CR>", { desc = "[D]ap open [R]epl" })
     end
   },
   {

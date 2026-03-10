@@ -7,6 +7,7 @@ $projects  = Join-Path $HOME "Projects"
 $downloads = Join-Path $HOME "Downloads"
 $notes     = Join-Path $HOME "Notes"
 $pictures  = Join-Path $HOME "OneDrive\Pictures"
+$desktop   = Join-Path $HOME "OneDrive\Desktop"
 
 ## for neovim and other tools
 $env:MOJANG    = $mojang
@@ -17,6 +18,8 @@ $env:PROJECTS  = $projects
 $env:DOWNLOADS = $downloads
 $env:NOTES     = $notes
 $env:PICTURES  = $pictures
+$env:DESKTOP   = $desktop
+$env:HOME      = $HOME
 
 function neo
 {

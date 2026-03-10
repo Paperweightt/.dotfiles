@@ -39,7 +39,31 @@
 ---
 --- /!\ When using flat config files, you need to use them across all your packages in your monorepo, as it's a global setting for the server.
 
--- local util = require 'lspconfig.util'
+--- @param root_files string[] List of root-marker files to append to.
+--- @param new_names string[] Potential root-marker filenames (e.g. `{ 'package.json', 'package.json5' }`) to inspect for the given `field`.
+--- @param field string Field to search for in the given `new_names` files.
+--- @param fname string Full path of the current buffer name to start searching upwards from.
+local function root_markers_with_field(root_files, new_names, field, fname)
+  local path = vim.fn.fnamemodify(fname, ':h')
+  local found = vim.fs.find(new_names, { path = path, upward = true, type = 'file' })
+
+  for _, f in ipairs(found or {}) do
+    -- Match the given `field`.
+    for line in io.lines(f) do
+      if line:find(field) then
+        root_files[#root_files + 1] = vim.fs.basename(f)
+        break
+      end
+    end
+  end
+
+  return root_files
+end
+
+local function insert_package_json(root_files, field, fname)
+  return root_markers_with_field(root_files, { 'package.json', 'package.json5' }, field, fname)
+end
+
 local lsp = vim.lsp
 
 local eslint_config_files = {
@@ -109,19 +133,19 @@ return {
     --
     -- Eslint used to support package.json files as config files, but it doesn't anymore.
     -- We keep this for backward compatibility.
-    -- local filename = vim.api.nvim_buf_get_name(bufnr)
-    -- local eslint_config_files_with_package_json =
-    --     util.insert_package_json(eslint_config_files, 'eslintConfig', filename)
-    -- local is_buffer_using_eslint = vim.fs.find(eslint_config_files_with_package_json, {
-    --   path = filename,
-    --   type = 'file',
-    --   limit = 1,
-    --   upward = true,
-    --   stop = vim.fs.dirname(project_root),
-    -- })[1]
-    -- if not is_buffer_using_eslint then
-    --   return
-    -- end
+    local filename = vim.api.nvim_buf_get_name(bufnr)
+    local eslint_config_files_with_package_json =
+        insert_package_json(eslint_config_files, 'eslintConfig', filename)
+    local is_buffer_using_eslint = vim.fs.find(eslint_config_files_with_package_json, {
+      path = filename,
+      type = 'file',
+      limit = 1,
+      upward = true,
+      stop = vim.fs.dirname(project_root),
+    })[1]
+    if not is_buffer_using_eslint then
+      return
+    end
 
     on_dir(project_root)
   end,
