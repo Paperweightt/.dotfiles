@@ -196,6 +196,7 @@ config.set("fonts.default_family", ["Fira Code"])
 
 config.unbind("d", mode="normal")
 
+config.set("content.blocking.method", "both")
 # gruvbox dark hard qutebrowser theme by Florian Bruhin <me@the-compiler.org>
 #
 # Originally based on:
