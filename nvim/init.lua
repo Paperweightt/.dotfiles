@@ -231,6 +231,13 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = 'C:\\Users\\henry\\.dotfiles\\nvim' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      vim.keymap.set('n', '<leader>sv', function()
+        builtin.find_files {
+          cwd = 'C:\\Users\\henry\\OneDrive\\Desktop\\packs\\.resources\\samples',
+          follow = true
+        }
+      end, { desc = '[S]earch minecraft [V]anilla files' })
     end,
   },
   {
