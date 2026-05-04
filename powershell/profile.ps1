@@ -1,6 +1,7 @@
 ## path variables
 $mojang    = Join-Path $HOME "AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang"
 $mojang2    = Join-Path $HOME "AppData\Roaming\Minecraft Bedrock\Users\15758859223355425889\games\com.mojang"
+$samples = "C:\Program Files\WindowsApps\MICROSOFT.MINECRAFTUWP_1.26.1301.0_x64__8wekyb3d8bbwe\data"
 $packs     = Join-Path $HOME "OneDrive\Desktop\packs"
 $dotf      = Join-Path $HOME ".dotfiles"
 $startup   = [Environment]::GetFolderPath("Startup")
@@ -22,6 +23,7 @@ $env:NOTES     = $notes
 $env:PICTURES  = $pictures
 $env:DESKTOP   = $desktop
 $env:HOME      = $HOME
+$env:SAMPLES   = $SAMPLES
 
 function neo
 {
