@@ -7,18 +7,52 @@
  */
 
 :root {
-  --background: url("https://images.alphacoders.com/632/632525.png");
+  --background: url("https://github.com/Paperweightt/.dotfiles/blob/main/discord/images/fish.jpg?raw=true");
   --activetext-colour: white;
-
-  /* --primary1-colour: red; */
-  /* --primary2-colour: rgba(255, 0, 0, 0.5); */
-  /* --primary3-colour: rgba(100, 0, 0, 0.6); */
-  /* --primary4-colour: rgba(100, 0, 0, 0.4); */
 
   --secondary1-colour: rgba(50, 50, 50, 0.3);
   --secondary2-colour: rgba(100, 100, 100, 0.5);
   --secondary3-colour: rgba(0, 0, 0, 0.6);
   --secondary4-colour: rgba(0, 0, 0, 0.3);
+
+  --gruv-dark-bg-hard: 29, 32, 33;
+  --gruv-dark-bg: 40 40 40;
+  --gruv-dark-bg-alt: 33, 33, 33;
+  --gruv-dark-bg-soft: 50, 48, 47;
+  --gruv-dark-bg1: 60, 56, 54;
+  --gruv-dark-bg2: 80, 73, 69;
+  --gruv-dark-bg3: 102, 92, 84;
+  --gruv-dark-bg4: 124, 111, 100;
+
+  --gruv-dark-fg-hard: 251, 241, 199;
+  --gruv-dark-fg: 235, 219, 178;
+  --gruv-dark-fg1: 213, 196, 161;
+  --gruv-dark-fg2: 189, 174, 147;
+  --gruv-dark-fg3: 168, 153, 132;
+
+  --gruv-dark-purple-dark: 177, 98, 134;
+  --gruv-dark-purple-light: 211, 134, 155;
+
+  --gruv-dark-yellow-dark: 215, 153, 33;
+  --gruv-dark-yellow-light: 250, 189, 47;
+
+  --gruv-dark-red-dark: 204, 36, 29;
+  --gruv-dark-red-light: 251, 73, 52;
+
+  --gruv-dark-orange-dark: 214, 93, 14;
+  --gruv-dark-orange-light: 254, 128, 25;
+
+  --gruv-dark-blue-dark: 69, 133, 136;
+  --gruv-dark-blue-light: 131, 165, 152;
+
+  --gruv-dark-green-dark: 152, 151, 26;
+  --gruv-dark-green-light: 184, 187, 38;
+
+  --gruv-dark-aqua-dark: 104, 157, 106;
+  --gruv-dark-aqua-light: 142, 192, 124;
+
+  --gruv-dark-gray-dark: 146, 131, 116;
+  --gruv-dark-gray-light: 168, 153, 132;
 }
 
 /*
@@ -288,17 +322,9 @@ The items above are not owned by me, They go to there respected owners
 
 #app-mount .containerDefault__29444 {
   background-color: var(--primary3-colour);
-  height: 30px;
   text-align: center;
   border-radius: 10px;
   padding: 5px 5px 0 5px;
-}
-
-#app-mount
-  .containerDefault__29444
-  .iconVisibility__29444:not(.collapsed__29444)
-  .overflow_b0dfc2 {
-  color: white;
 }
 
 #app-mount .activityPanel__5e434 {
@@ -307,9 +333,6 @@ The items above are not owned by me, They go to there respected owners
   margin-bottom: 0;
 }
 
-#app-mount .containerDefault__29444 {
-  margin-top: 15px;
-}
 #app-mount .containerDefault_c69b6d {
   margin-right: 10px;
 }
@@ -364,10 +387,7 @@ The items above are not owned by me, They go to there respected owners
 }
 
 #app-mount .containerDefault_c69b6d .wrapper__2ea32 {
-  border-radius: 10px 0 0 10px;
-  width: 230px;
-  transition: width 0.2s;
-  transition-timing-function: ease-in-out;
+  border-radius: 10px;
 }
 
 #app-mount .containerDefault_c69b6d .modeMuted__2ea32,
@@ -445,16 +465,9 @@ The items above are not owned by me, They go to there respected owners
 #app-mount .voiceUser__07f91 .content__07f91:hover {
   background-color: transparent;
 }
-#app-mount .voiceUser__07f91 {
-  transition: margin 0.2s;
-  transition-timing-function: ease-in-out;
-  margin-left: 0;
-  padding-right: 5px;
-}
 #app-mount .voiceUser__07f91:hover {
   background-color: var(--secondary1-colour);
   border-radius: 2px;
-  margin-left: 20px;
 }
 
 /*Live Feed*/
@@ -506,44 +519,9 @@ The items above are not owned by me, They go to there respected owners
 }
 
 #app-mount .mention,
-#app-mount .channelMention .name_b52c3f {
-  background-color: var(--primary3-colour);
-  color: var(--primary1-colour);
-}
-
-#app-mount .mentioned__5126c {
-  background-color: var(--primary3-colour);
-}
 #app-mount .mentioned__5126c .contents-2mQqc9,
 #app-mount .mentioned__5126c .container-1ov-mD,
-#app-mount .channelMention {
-  background-color: var(--primary3-colour);
-}
-#app-mount .mentioned__5126c:before {
-  background: var(--primary1-colour);
-  width: 3px;
-}
-
-#app-mount .channelMention .channelWithIcon path {
-  fill: var(--primary1-colour);
-}
-
-#app-mount a[target="_blank"] {
-  color: var(--primary1-colour);
-}
-
-#app-mount .newMessagesBar__0f481 {
-  background-color: var(--primary1-colour);
-}
-#app-mount .newMessagesBar__0f481:hover {
-  background-color: var(--primary2-colour);
-}
-
 #app-mount .newMessagesBar__0f481 .span__0f481,
-#app-mount .newMessagesBar__0f481 .barButtonAlt__0f481 {
-  color: var(--activetext-colour);
-}
-
 #app-mount .jumpToPresentBar__0f481 {
   background-color: var(--secondary3-colour);
 }
@@ -598,21 +576,6 @@ The items above are not owned by me, They go to there respected owners
   background-color: var(--secondary1-colour);
   border-left: 4px solid;
   border-radius: 10px !important;
-}
-
-/*Media Player*/
-#app-mount .unreadBar-3YD_k9 {
-  background-color: var(--primary1-colour);
-}
-
-#app-mount .messageAttachment__5dae1 a[target="_blank"] {
-  color: var(--primary2-colour);
-}
-#app-mount .mediaBarProgress_f7877e,
-#app-mount .mediaBarProgress_f7877e::before,
-#app-mount .mediaBarProgress_f7877e::after,
-#app-mount .mediaBarProgress_f7877e .mediaBarGrabber_f7877e {
-  background-color: var(--primary1-colour);
 }
 
 /*Discussions*/
@@ -683,7 +646,7 @@ The items above are not owned by me, They go to there respected owners
 /*Reactions*/
 #app-mount .reaction__23977.reactionMe__23977 {
   background-color: var(--primary3-colour);
-  border-color: var(--primary1-colour);
+  border-color: var(--gruv-dark-fg2);
 }
 
 /*Server tabs - IE Browse channels and Members*/
@@ -710,9 +673,6 @@ The items above are not owned by me, They go to there respected owners
 }
 
 #app-mount .member__5d473 {
-  margin-left: 30px;
-  transition: margin-left 0.2s;
-  transition-timing-function: ease-in-out;
   border-radius: 10px;
   background-color: var(--secondary1-colour);
 }
@@ -728,9 +688,9 @@ The items above are not owned by me, They go to there respected owners
 #app-mount .members_c8ffbb .container__0f2e8 {
   background-color: var(--secondary1-colour);
 }
-#app-mount .members_c8ffbb .container__0f2e8:hover {
-  background-color: var(--secondary2-colour);
-}
+/* #app-mount .members_c8ffbb .container__0f2e8:hover { */
+/*   background-color: var(--secondary2-colour); */
+/* } */
 
 #app-mount .membersGroup_c8ffbb span {
   color: white;
@@ -760,11 +720,6 @@ The items above are not owned by me, They go to there respected owners
   background-color: transparent;
   border-color: transparent;
 }
-#app-mount .messagesWrapper__36d07 ::-webkit-scrollbar-track,
-#app-mount .peopleColumn__133bf ::-webkit-scrollbar-track,
-#app-mount .homeWrapperNormal__0920e ::-webkit-scrollbar-track,
-#app-mount .container-3wLKDe ::-webkit-scrollbar-track,
-#app-mount .enterDone__5c9fc ::-webkit-scrollbar-track,
 #app-mount .chat_f75fb0 .container_f369db ::-webkit-scrollbar-track {
   background-color: var(--primary3-colour);
   border-radius: 10px;
@@ -1452,34 +1407,6 @@ The items above are not owned by me, They go to there respected owners
   background-color: var(--secondary2-colour);
 }
 
-/*BetterDiscord Popups and other bits*/
-#app-mount .bd-modal-header {
-  background-color: var(--primary3-colour);
-}
-#app-mount .bd-modal-root {
-  background-color: var(--secondary3-colour);
-}
-#app-mount .bd-modal-footer {
-  background-color: var(--secondary2-colour);
-}
-
-#app-mount .bd-button.selected,
-#app-mount .bd-button-filled.bd-button-color-red,
-#app-mount .bd-button:active {
-  background-color: var(--primary1-colour);
-}
-
-#app-mount .bd-addon-store-card {
-  background-color: var(--secondary3-colour);
-}
-#app-mount .bd-addon-store-card:hover {
-  background-color: var(--secondary2-colour);
-}
-#app-mount .bd-addon-store-card .bd-button-filled,
-#app-mount .bd-empty-image-container .bd-button-filled {
-  background-color: var(--primary1-colour);
-}
-
 /*Inbox popup*/
 #app-mount .header-PfVfAO,
 #app-mount .channelHeader__35a7e {
@@ -1648,17 +1575,4 @@ The items above are not owned by me, They go to there respected owners
 #app-mount .contentWrapper__08434 .categoryFadeBlurple_d02962,
 #app-mount .contentWrapper__08434 .result__2dc39 {
   background-color: var(--primary3-colour) !important;
-}
-
-/*TopBar*/
-#app-mount .title_c38106::before {
-  color: rgb(255, 255, 255, 0.5);
-  font-weight: 500;
-
-  position: left;
-  margin-right: 10px;
-}
-#app-mount .title_c38106 {
-  background-color: var(--secondary3-colour);
-  border-bottom: 3px solid var(--primary3-colour);
 }
