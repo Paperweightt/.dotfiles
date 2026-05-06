@@ -14,8 +14,6 @@
 ;;; visuals
 (if window-system
   (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
 )
 
 (global-display-line-numbers-mode 1)
@@ -78,7 +76,7 @@
  '(custom-safe-themes
    '("5a0ddbd75929d24f5ef34944d78789c6c3421aa943c15218bac791c199fc897d"
      default))
- '(package-selected-packages nil))
+ '(package-selected-packages '(evil-collection gruvbox-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
