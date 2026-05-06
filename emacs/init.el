@@ -16,7 +16,7 @@
   (menu-bar-mode -1)
 )
 
-(global-display-line-numbers-mode 1)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 
 (set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 110)
@@ -48,7 +48,8 @@
   (evil-collection-init))
 
 (use-package grease
-  :load-path "~/.emacs.d/lisp/grease.el"
+  :after evil
+  :load-path "~/.dotfiles/emacs/site-lisp/grease.el"
   :commands (grease-open grease-toggle grease-here)
   :init
   (setq grease-use-icons t)              ; Set to nil to disable icons
@@ -64,6 +65,7 @@
   (setq grease-show-hidden t)          ; Set to t to show dotfiles by default
   (setq grease-preview-window-width 0.4) ; Preview takes 40% of frame width
   (setq grease-preview-writable nil))     ; Set to t to make file previews editable
+  (define-key evil-normal-state-map (kbd "-") 'grease-here)
 
 
 
@@ -76,7 +78,7 @@
  '(custom-safe-themes
    '("5a0ddbd75929d24f5ef34944d78789c6c3421aa943c15218bac791c199fc897d"
      default))
- '(package-selected-packages '(evil-collection gruvbox-theme)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
