@@ -12,10 +12,6 @@
 
 
 ;;; visuals
-(if window-system
-  (menu-bar-mode -1)
-)
-
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 
@@ -28,12 +24,13 @@
 
 
 
-;;; misc packages
+;;; nvim packages
 (use-package evil
   :ensure t
   :init
   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
   (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
   :config
   (define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
