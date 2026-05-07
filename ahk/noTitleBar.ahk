@@ -3,8 +3,8 @@
 remove := true
 Programs := [
     "ahk_exe Neovide.exe",
-    ;"ahk_exe Neo.exe",
-    "ahk_class ConsoleWindowClass"
+    "ahk_class ConsoleWindowClass",
+    "ahk_class Emacs"
 ]
 
 SetTimer(removeTitleBar, 500)
@@ -35,7 +35,6 @@ restoreTitleBar() {
     }
 }
 
-;- Remove Caption (Title Bar)
 ;^e::{
 ;    global remove
 ;
