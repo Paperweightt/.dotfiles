@@ -32,15 +32,18 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   :config
+  (evil-set-leader 'normal (kbd "SPC"))
+
   (define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
   (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
+
   (evil-mode 1))
 
 (use-package evil-collection
-  :after evil
   :ensure t
+  :after evil
   :config
   (evil-collection-init))
 
@@ -48,21 +51,53 @@
   :after evil
   :load-path "~/.dotfiles/emacs/site-lisp/grease.el"
   :commands (grease-open grease-toggle grease-here)
-  :init
-  (setq grease-use-icons t)              ; Set to nil to disable icons
-  (setq grease-sort-method 'type)        ; Default sort method
-  ;;   'type      - Directories first, then files (default)
-  ;;   'name      - Alphabetical by name
-  ;;   'size      - By file size (smallest first)
-  ;;   'size-desc - By file size (largest first)
-  ;;   'date      - By modification date (oldest first)
-  ;;   'date-desc - By modification date (newest first)
-  ;;   'extension - By file extension
-  (setq grease-sort-directories-first t) ; Always show dirs first (for non-type sorts)
+  :config
   (setq grease-show-hidden t)          ; Set to t to show dotfiles by default
   (setq grease-preview-window-width 0.4) ; Preview takes 40% of frame width
   (setq grease-preview-writable nil))     ; Set to t to make file previews editable
   (define-key evil-normal-state-map (kbd "-") 'grease-here)
+
+
+
+;;; search
+(use-package vertico
+  :ensure t
+  :config
+  (define-key evil-normal-state-map (kbd "C-n") #'vertico-next)
+  (define-key evil-normal-state-map (kbd "C-p") #'vertico-previous)
+  (vertico-mode))
+
+(use-package emacs
+  :custom
+  (context-menu-mode t)
+  (enable-recursive-minibuffers t)
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  (minibuffer-prompt-properties
+   '(read-only t cursor-intangible t face minibuffer-prompt)))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion))))
+  (completion-category-defaults nil) ;; Disable defaults, use our settings
+  (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
+
+;; Example configuration for Consult
+(use-package consult
+  :ensure t
+  :after evil
+  :init
+  (advice-add #'register-preview :override #'consult-register-window)
+  (setq register-preview-delay 0.5)
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  :config
+  (define-key evil-normal-state-map (kbd "<leader>sg") #'consult-ripgrep)
+  (define-key evil-normal-state-map (kbd "<leader>sf") #'consult-find)
+  (define-key evil-normal-state-map (kbd "<leader>sh") #'consult-history)
+  (define-key evil-normal-state-map (kbd "<leader>SPC") #'consult-buffer)
+)
 
 
 

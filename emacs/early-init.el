@@ -41,6 +41,7 @@
   (menu-bar-mode -1)
 )
 
+(set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 110)
 (setq frame-inhibit-implied-resize t)
 
 ;;; auto reopen
