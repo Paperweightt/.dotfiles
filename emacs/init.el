@@ -12,6 +12,11 @@
 
 
 ;;; visuals
+
+(if window-system
+  (scroll-bar-mode -1)
+)
+
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 
@@ -83,7 +88,6 @@
   (completion-category-defaults nil) ;; Disable defaults, use our settings
   (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
-;; Example configuration for Consult
 (use-package consult
   :ensure t
   :after evil
