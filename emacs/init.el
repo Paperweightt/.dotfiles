@@ -11,8 +11,7 @@
 
 
 
-;;; visuals
-
+;;; misc
 (if window-system
   (scroll-bar-mode -1)
 )
@@ -27,7 +26,16 @@
   (load-theme 'gruvbox-dark-medium t)
 )
 
-
+(use-package emacs
+  :custom
+  ;; Emacs 30 and newer: Disable Ispell completion function.
+  ;; Try `cape-dict' as an alternative.
+  (text-mode-ispell-word-completion nil)
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  (context-menu-mode t)
+  (enable-recursive-minibuffers t)
+  (minibuffer-prompt-properties
+   '(read-only t cursor-intangible t face minibuffer-prompt)))
 
 ;;; nvim packages
 (use-package evil
@@ -38,12 +46,10 @@
   (setq evil-want-C-u-scroll t)
   :config
   (evil-set-leader 'normal (kbd "SPC"))
-
   (define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
   (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
-
   (evil-mode 1))
 
 (use-package evil-collection
@@ -67,18 +73,13 @@
 ;;; search
 (use-package vertico
   :ensure t
+  :custom
+  (vertico-count 20)
   :config
   (define-key evil-normal-state-map (kbd "C-n") #'vertico-next)
   (define-key evil-normal-state-map (kbd "C-p") #'vertico-previous)
   (vertico-mode))
 
-(use-package emacs
-  :custom
-  (context-menu-mode t)
-  (enable-recursive-minibuffers t)
-  (read-extended-command-predicate #'command-completion-default-include-p)
-  (minibuffer-prompt-properties
-   '(read-only t cursor-intangible t face minibuffer-prompt)))
 
 (use-package orderless
   :ensure t
@@ -100,7 +101,39 @@
   (define-key evil-normal-state-map (kbd "<leader>sg") #'consult-ripgrep)
   (define-key evil-normal-state-map (kbd "<leader>sf") #'consult-find)
   (define-key evil-normal-state-map (kbd "<leader>sh") #'consult-history)
-  (define-key evil-normal-state-map (kbd "<leader>SPC") #'consult-buffer)
+  (define-key evil-normal-state-map (kbd "<leader>SPC") #'consult-buffer))
+
+(use-package marginalia
+  :ensure t
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
+
+
+
+;;; autocomplete
+(use-package corfu
+  :ensure t
+  :init
+  (global-corfu-mode)
+  :custom
+  (corfu-auto t)
+  (corfu-auto-delay 0.1)
+  (corfu-auto-prefix 1)
+  (global-corfu-mode)
+  :config
+  (define-key evil-insert-state-map (kbd "C-n") #'corfu-next)
+  (define-key evil-insert-state-map (kbd "C-p") #'corfu-previous)
+  (define-key evil-insert-state-map (kbd "C-y") #'corfu-insert))
+
+(use-package cape
+  :ensure t
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  (add-hook 'completion-at-point-functions #'cape-history)
 )
 
 
