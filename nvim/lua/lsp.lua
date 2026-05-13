@@ -5,6 +5,7 @@ vim.lsp.enable {
   'ts_ls',
   'eslint',
   -- 'nil_ls', -- for nix
+  'rust_analyzer',
   'bedrock_ls',
   'gopls',
   'basedpyright'
