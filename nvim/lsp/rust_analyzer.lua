@@ -131,21 +131,25 @@ return {
       end
     end)
   end,
-  capabilities = {
-    experimental = {
-      serverStatusNotification = true,
-      commands = {
-        commands = {
-          'rust-analyzer.showReferences',
-          'rust-analyzer.runSingle',
-          'rust-analyzer.debugSingle',
-        },
-      },
-    },
-  },
+  capabilities = require("blink.cmp").get_lsp_capabilities(),
+  -- capabilities = {
+  --   experimental = {
+  --     serverStatusNotification = true,
+  --     commands = {
+  --       commands = {
+  --         'rust-analyzer.showReferences',
+  --         'rust-analyzer.runSingle',
+  --         'rust-analyzer.debugSingle',
+  --       },
+  --     },
+  --   },
+  -- },
   ---@type lspconfig.settings.rust_analyzer
   settings = {
     ['rust-analyzer'] = {
+      check = {
+        command = "clippy",
+      },
       lens = {
         debug = { enable = true },
         enable = true,
