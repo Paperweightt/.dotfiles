@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Environment]
+"MOJANG"="C:\\Users\\Henry\\AppData\\Roaming\\Minecraft Bedrock\\Users\\Shared\\games\\com.mojang"
+"PACKS"="C:\\Users\\Henry\\OneDrive\\Desktop\\packs"
+"DOTF"="C:\\Users\\Henry\\.dotfiles"
+"PROJECTS"="C:\\Users\\Henry\\Projects"
+"DOWNLOADS"="C:\\Users\\Henry\\Downloads"
+"NOTES"="C:\\Users\\Henry\\Notes"
+"PICTURES"="C:\\Users\\Henry\\OneDrive\\Pictures"
+"DESKTOP"="C:\\Users\\Henry\\OneDrive\\Desktop"

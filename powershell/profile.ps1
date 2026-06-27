@@ -1,29 +1,29 @@
 ## path variables
-$mojang    = Join-Path $HOME "AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang"
-$mojang2    = Join-Path $HOME "AppData\Roaming\Minecraft Bedrock\Users\15758859223355425889\games\com.mojang"
-$samples = "C:\Program Files\WindowsApps\MICROSOFT.MINECRAFTUWP_1.26.1301.0_x64__8wekyb3d8bbwe\data"
-$packs     = Join-Path $HOME "OneDrive\Desktop\packs"
-$dotf      = Join-Path $HOME ".dotfiles"
-$startup   = [Environment]::GetFolderPath("Startup")
-$projects  = Join-Path $HOME "Projects"
-$downloads = Join-Path $HOME "Downloads"
-$notes     = Join-Path $HOME "Notes"
-$pictures  = Join-Path $HOME "OneDrive\Pictures"
-$desktop   = Join-Path $HOME "OneDrive\Desktop"
-
-## for neovim and other tools
-$env:MOJANG    = $mojang
-$env:MOJANG2   = $mojang2
-$env:PACKS     = $packs
-$env:DOTF      = $dotf
-$env:STARTUP   = $startup
-$env:PROJECTS  = $projects
-$env:DOWNLOADS = $downloads
-$env:NOTES     = $notes
-$env:PICTURES  = $pictures
-$env:DESKTOP   = $desktop
-$env:HOME      = $HOME
-$env:SAMPLES   = $SAMPLES
+# $mojang    = Join-Path $HOME "AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang"
+# $mojang2    = Join-Path $HOME "AppData\Roaming\Minecraft Bedrock\Users\15758859223355425889\games\com.mojang"
+# $samples = "C:/XboxGames/Minecraft for Windows/Content/data/"
+# $packs     = Join-Path $HOME "OneDrive\Desktop\packs"
+# $dotf      = Join-Path $HOME ".dotfiles"
+# $startup   = [Environment]::GetFolderPath("Startup")
+# $projects  = Join-Path $HOME "Projects"
+# $downloads = Join-Path $HOME "Downloads"
+# $notes     = Join-Path $HOME "Notes"
+# $pictures  = Join-Path $HOME "OneDrive\Pictures"
+# $desktop   = Join-Path $HOME "OneDrive\Desktop"
+#
+# ## for other tools
+# $env:MOJANG    = $mojang
+# $env:MOJANG2   = $mojang2
+# $env:PACKS     = $packs
+# $env:DOTF      = $dotf
+# $env:STARTUP   = $startup
+# $env:PROJECTS  = $projects
+# $env:DOWNLOADS = $downloads
+# $env:NOTES     = $notes
+# $env:PICTURES  = $pictures
+# $env:DESKTOP   = $desktop
+# $env:HOME      = $HOME
+# $env:SAMPLES   = $SAMPLES
 
 function neo
 {
