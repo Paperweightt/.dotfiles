@@ -155,7 +155,7 @@ require('lazy').setup {
   {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = '0.1.x',
+    branch = 'master',
     dependencies = {
       'nvim-lua/plenary.nvim',
       {
@@ -233,10 +233,7 @@ require('lazy').setup {
       end, { desc = '[S]earch [N]eovim files' })
 
       vim.keymap.set('n', '<leader>sv', function()
-        builtin.find_files {
-          cwd = 'C:\\Users\\henry\\OneDrive\\Desktop\\packs\\.resources\\samples',
-          follow = true
-        }
+        builtin.find_files { cwd = 'C:\\Users\\Henry\\OneDrive\\Desktop\\packs\\.resources\\bedrock-samples' }
       end, { desc = '[S]earch minecraft [V]anilla files' })
     end,
   },
@@ -273,6 +270,26 @@ require('lazy').setup {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    init = function()
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          -- Enable treesitter highlighting and disable regex syntax
+          pcall(vim.treesitter.start)
+          -- Enable treesitter-based indentation
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+      local ensureInstalled = {
+        'lua', 'python', 'typescript', 'rust',
+      }
+      local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+      local parsersToInstall = vim.iter(ensureInstalled)
+          :filter(function(parser)
+            return not vim.tbl_contains(alreadyInstalled, parser)
+          end)
+          :totable()
+      require('nvim-treesitter').install(parsersToInstall)
+    end,
   },
   { import = 'plugins' },
   ui = {
