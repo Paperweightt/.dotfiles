@@ -133,5 +133,9 @@
     "mojang-studios.minecraft-debugger"
   ],
   "debug.onTaskErrors": "debugAnyway",
-  "chat.viewSessions.enabled": false
+  "chat.viewSessions.enabled": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
