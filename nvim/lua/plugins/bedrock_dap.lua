@@ -3,36 +3,36 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
   },
-  {
-    "liadOz/nvim-dap-repl-highlights",
-    config = function()
-      require('nvim-dap-repl-highlights').setup()
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = {
-          'dap_repl',
-          'bash',
-          'rust',
-          'c',
-          'html',
-          'css',
-          'lua',
-          'powershell',
-          'markdown_inline',
-          'markdown',
-          'jsdoc',
-          'javascript',
-          'gitignore',
-          'yaml',
-        },
-        auto_install = true,
-        highlight = {
-          enable = true,
-        },
-        indent = { enable = true },
-      }
-    end
-  },
+  -- {
+  --   "liadOz/nvim-dap-repl-highlights",
+  --   config = function()
+  --     require('nvim-dap-repl-highlights').setup()
+  --     ---@diagnostic disable-next-line: missing-fields
+  --     require('nvim-treesitter').setup {
+  --       ensure_installed = {
+  --         'dap_repl',
+  --         'bash',
+  --         'rust',
+  --         'c',
+  --         'html',
+  --         'css',
+  --         'lua',
+  --         'powershell',
+  --         'markdown_inline',
+  --         'markdown',
+  --         'jsdoc',
+  --         'javascript',
+  --         'gitignore',
+  --         'yaml',
+  --       },
+  --       auto_install = true,
+  --       highlight = {
+  --         enable = true,
+  --       },
+  --       indent = { enable = true },
+  --     }
+  --   end
+  -- },
   {
     "igorlfs/nvim-dap-view",
     ---@module 'dap-view'

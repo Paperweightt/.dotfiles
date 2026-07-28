@@ -8,7 +8,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.045
   vim.g.neovide_refresh_rate = 144
   vim.g.neovide_scale_factor = 1.0
-  vim.g.neovide_scroll_animation_length = 0.35
+  vim.g.neovide_scroll_animation_length = 0.25
   vim.o.guifont = default_font
 
   vim.api.nvim_create_user_command("Restart", function()
