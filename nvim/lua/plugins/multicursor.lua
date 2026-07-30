@@ -1,3 +1,78 @@
+local transforms = {}
+
+local function addTransform(pattern, replace)
+  table.insert(transforms, {
+    pattern = pattern,
+    replace = replace,
+  })
+end
+
+local function transform(data)
+  for _, rule in ipairs(transforms) do
+    local result, count = data:gsub(rule.pattern, rule.replace)
+
+    if count > 0 then
+      return result
+    end
+  end
+
+  return data
+end
+
+local ahk = [[
+  #SingleInstance Force
+  OnClipboardChange(ClipChanged)
+  ClipChanged(type) {
+    if (type == 1 && !WinActive('ahk_exe Neovide.exe')) {
+        FileAppend(A_Clipboard, '*')
+    }
+  }
+]]
+
+local watcher = vim.system(
+  { "C:/Program Files/AutoHotkey/v2.0.19/AutoHotkey32.exe", "*" },
+  {
+    stdin = ahk,
+    stdout = function(_, data)
+      if not data then
+        return
+      end
+
+      vim.schedule(function()
+        local mc = require 'multicursor-nvim'
+
+        if not mc:hasCursors() then return end
+
+        local lines = vim.split(data, "\r?\n", { trimempty = true })
+
+        for index, value in ipairs(lines) do
+          lines[index] = transform(value)
+        end
+
+        mc.nextCursor()
+
+        vim.api.nvim_put(lines, "c", true, true)
+      end)
+    end,
+  }
+)
+
+local number = "-?%d+%.?%d*"
+addTransform(
+  "(" .. number .. ")%s+(" .. number .. ")%s+(" .. number .. ")",
+  function(x, y, z)
+    return "{ x: " .. x .. ", y: " .. y .. ", z: " .. z .. " }"
+  end
+)
+
+vim.api.nvim_create_autocmd("QuitPre", {
+  callback = function()
+    if watcher then
+      watcher:kill(15)
+    end
+  end,
+})
+
 return {
   'jake-stewart/multicursor.nvim',
   branch = '1.0',
