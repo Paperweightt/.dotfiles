@@ -41,12 +41,15 @@ local watcher = vim.system(
       vim.schedule(function()
         local mc = require 'multicursor-nvim'
 
-        if not mc:hasCursors() then return end
-
         local lines = vim.split(data, "\r?\n", { trimempty = true })
 
         for index, value in ipairs(lines) do
           lines[index] = transform(value)
+        end
+
+        if not mc:hasCursors() then
+          vim.fn.setreg("+", lines)
+          return
         end
 
         mc.nextCursor()
