@@ -64,8 +64,6 @@ return {
       local path = state.path
       local prefix = 'oil'
 
-      vim.print(path)
-
       if not path then return end
 
       if string.sub(path, 1, #prefix) == prefix then
