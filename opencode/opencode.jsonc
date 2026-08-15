@@ -6,10 +6,19 @@
       "command": ["codegraph", "serve", "--mcp"],
       "enabled": true,
     },
+    "composio": {
+      "type": "remote",
+      "url": "https://connect.composio.dev/mcp",
+      "oauth": {},
+    },
+    "jq": {
+      "type": "local",
+      "command": ["npx", "-y", "@247arjun/mcp-jq"],
+      "enabled": true,
+    },
   },
   "lsp": true,
   "permission": {
     "lsp": "allow",
   },
 }
-
