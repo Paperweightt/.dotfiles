@@ -25,6 +25,7 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
       'L3MON4D3/LuaSnip',
+      'Exafunction/codeium.nvim',
       version = 'v2.*'
     },
 
@@ -43,8 +44,13 @@ return {
       completion = { documentation = { auto_show = false } },
       signature = { enabled = true },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages', 'codeium' },
         providers = {
+          codeium = {
+            name = "Codeium",
+            module = "codeium.blink",
+            async = true
+          },
           tome_pages = {
             name = "tome_pages",
             module = "tome.autocomplete",
