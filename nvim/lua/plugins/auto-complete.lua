@@ -44,13 +44,8 @@ return {
       completion = { documentation = { auto_show = false } },
       signature = { enabled = true },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages', 'codeium' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'tome_pages' },
         providers = {
-          codeium = {
-            name = "Codeium",
-            module = "codeium.blink",
-            async = true
-          },
           tome_pages = {
             name = "tome_pages",
             module = "tome.autocomplete",

@@ -19,6 +19,7 @@ return {
   "nvzone/floaterm",
   dependencies = "nvzone/volt",
   cmd = "FloatermToggle",
+  lazy = false,
   config = function()
     local floaterm = require("floaterm")
     local floaterm_state = require("floaterm.state")
