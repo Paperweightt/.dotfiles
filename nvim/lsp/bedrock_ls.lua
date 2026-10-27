@@ -34,8 +34,6 @@ return {
     "bc-minecraft-language",
     "bc-minecraft-molang",
     "bc-minecraft-project",
-    "bc-minecraft-project",
-    "bc-minecraft-project",
   },
   --prioritize .git so that project can include both rp and bp then fallback to manifest.json
   root_dir = vim.fs.root(0, { { ".git" }, "manifest.json" })
