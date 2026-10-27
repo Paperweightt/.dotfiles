@@ -6,7 +6,7 @@ return {
   opts = {},
   config = function()
     require('render-markdown').setup {
-      completions = { lsp = { enabled = true } },
+      completions = { blink = { enabled = true } },
       heading = {
         width = 'block',
         right_pad = 1,
