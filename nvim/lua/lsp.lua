@@ -5,6 +5,8 @@ vim.lsp.enable {
   'ts_ls',
   'eslint',
   -- 'nil_ls', -- for nix
+  'biome',
+  'oxlint',
   'rust_analyzer',
   'bedrock_ls',
   'gopls',
@@ -16,6 +18,7 @@ local builtin = require('telescope.builtin')
 
 -- Temporary shim to silence the warning until all plugins update
 local make_position_params = vim.lsp.util.make_position_params
+
 vim.lsp.util.make_position_params = function(bufnr, ...)
   local params = select(1, ...)
   if type(params) == "string" then
