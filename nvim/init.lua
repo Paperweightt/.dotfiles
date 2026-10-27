@@ -47,12 +47,23 @@ vim.opt.fillchars = 'eob: '
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.listchars = { tab = '  ', trail = ' ', nbsp = ' ' }
 
+vim.o.exrc = true
+
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.keymap.set("x", "/", "<Esc>/\\%V")
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Check if Neovim was opened with no arguments (argc() == 0)
+    if vim.fn.argc() == 0 then
+      vim.cmd("edit C:\\Users\\Henry\\Notes\\people\\Henry\\goals.md")
+    end
+  end,
+})
 
 vim.keymap.set('n', '<leader>rl', function()
   local ok, err = pcall(dofile, vim.fn.expand '%')
@@ -140,14 +151,15 @@ require('lazy').setup {
 
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode',        mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ap' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>z', group = '[Z]ettelkasten' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>g', group = '[G]it',         mode = { 'n', 'v' } },
+        { '<leader>c',  group = '[C]ode',              mode = { 'n', 'x' } },
+        { '<leader>d',  group = '[D]ap' },
+        { '<leader>r',  group = '[R]ename' },
+        { '<leader>s',  group = '[S]earch' },
+        { '<leader>w',  group = '[W]orkspace' },
+        { '<leader>z',  group = '[Z]ettelkasten' },
+        { '<leader>mp', group = '[M]arkdown [P]review' },
+        { '<leader>t',  group = '[T]oggle' },
+        { '<leader>g',  group = '[G]it',               mode = { 'n', 'v' } },
       },
     },
   },
@@ -245,19 +257,19 @@ require('lazy').setup {
         lsp_fallback = true,
       },
       formatters_by_ft = {
-        rust = { 'rustfmt' },
-        json = { 'prettierd' },
-        jsonc = { 'prettierd' },
-        yaml = { 'prettierd' },
-        markdown = { 'prettierd' },
-        lua = { 'stylua' },
-        javascript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
-        python = { 'black' },
-        css = { 'prettierd' },
-        html = { 'prettierd' },
+        rust = { 'rustfmt', stop_after_first = true },
+        json = { 'biome', 'prettierd', stop_after_first = true },
+        jsonc = { 'biome', 'prettierd', stop_after_first = true },
+        yaml = { 'biome', 'prettierd', stop_after_first = true },
+        markdown = { 'biome', 'prettierd', stop_after_first = true },
+        lua = { 'stylua', stop_after_first = true },
+        javascript = { 'biome', 'prettierd', stop_after_first = true },
+        javascriptreact = { 'biome', 'prettierd', stop_after_first = true },
+        typescript = { 'biome', 'prettierd', stop_after_first = true },
+        typescriptreact = { 'biome', 'prettierd', stop_after_first = true },
+        python = { 'black', stop_after_first = true },
+        css = { 'biome', 'prettierd', stop_after_first = true },
+        html = { 'biome', 'prettierd', stop_after_first = true },
       },
     },
   },
@@ -279,7 +291,7 @@ require('lazy').setup {
         end,
       })
       local ensureInstalled = {
-        'lua', 'python', 'typescript', 'rust'
+        'lua', 'python', 'typescript', 'rust', "go", "gomod", "gowork", "gosum"
       }
       local alreadyInstalled = require('nvim-treesitter.config').get_installed()
       local parsersToInstall = vim.iter(ensureInstalled)
