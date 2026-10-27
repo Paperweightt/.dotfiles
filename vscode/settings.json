@@ -123,7 +123,7 @@
   ],
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
-  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "extensions.autoUpdate": "off",
   "editor.renderWhitespace": "none",
   "editor.minimap.enabled": false,
   "editor.renderControlCharacters": false,
